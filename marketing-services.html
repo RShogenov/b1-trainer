@@ -206,6 +206,19 @@
 
     .about__photo-placeholder { width: 100%; max-width: 400px; aspect-ratio: 4/5; border-radius: var(--radius-lg); background: linear-gradient(135deg, var(--accent-light) 0%, #c7d2fe 100%); margin: 0 auto; position: relative; overflow: hidden; }
     .about__photo-placeholder::after { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.4), transparent 60%); }
+
+    /* TESTIMONIALS */
+    .testimonials__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    @media (max-width: 639px) { .testimonials__grid { grid-template-columns: 1fr; } }
+    @media (min-width: 640px) and (max-width: 1023px) { .testimonials__grid { grid-template-columns: repeat(2, 1fr); } }
+
+    .testimonial-card { background: #fff; border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 32px; transition: box-shadow 0.25s ease; }
+    .testimonial-card:hover { box-shadow: var(--shadow-hover); }
+    .testimonial-card__quote { font-family: Georgia, serif; font-size: 5rem; color: var(--accent-light); line-height: 0.8; display: block; margin-bottom: 16px; }
+    .testimonial-card__text { font-size: 1rem; color: var(--text); font-style: italic; margin-bottom: 24px; line-height: 1.6; }
+    .testimonial-card__footer { border-top: 1px solid var(--border); padding-top: 16px; }
+    .testimonial-card__name { font-family: var(--font-heading); font-weight: 600; font-size: 0.9375rem; color: var(--text); display: block; font-style: normal; }
+    .testimonial-card__role { font-size: 0.8125rem; color: var(--text-muted); }
   </style>
 </head>
 <body>
@@ -423,6 +436,39 @@
         </div>
         <div class="about__visual reveal-up" style="--delay: 150ms" aria-hidden="true">
           <div class="about__photo-placeholder"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section testimonials" id="testimonials" aria-labelledby="testimonials-title">
+      <div class="container">
+        <p class="section-label">What clients say</p>
+        <h2 class="section-title" id="testimonials-title">Trusted by SaaS teams</h2>
+        <div class="testimonials__grid">
+          <blockquote class="testimonial-card reveal-up">
+            <span class="testimonial-card__quote" aria-hidden="true">"</span>
+            <p class="testimonial-card__text">Ruslan helped us cut through the noise and find a message that actually resonated. Pipeline doubled in two quarters.</p>
+            <footer class="testimonial-card__footer">
+              <cite class="testimonial-card__name">Jane D.</cite>
+              <span class="testimonial-card__role">Head of Marketing, SaaS Co.</span>
+            </footer>
+          </blockquote>
+          <blockquote class="testimonial-card reveal-up" style="--delay: 100ms">
+            <span class="testimonial-card__quote" aria-hidden="true">"</span>
+            <p class="testimonial-card__text">One of the sharpest GTM thinkers I've worked with. He made our launch feel effortless.</p>
+            <footer class="testimonial-card__footer">
+              <cite class="testimonial-card__name">Alex M.</cite>
+              <span class="testimonial-card__role">Founder, Dev Tools Startup</span>
+            </footer>
+          </blockquote>
+          <blockquote class="testimonial-card reveal-up" style="--delay: 200ms">
+            <span class="testimonial-card__quote" aria-hidden="true">"</span>
+            <p class="testimonial-card__text">If you need someone who can translate your product into something buyers care about, Ruslan is your person.</p>
+            <footer class="testimonial-card__footer">
+              <cite class="testimonial-card__name">Sara K.</cite>
+              <span class="testimonial-card__role">VP Product, B2B Platform</span>
+            </footer>
+          </blockquote>
         </div>
       </div>
     </section>
