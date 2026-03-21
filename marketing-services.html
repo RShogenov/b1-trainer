@@ -73,14 +73,96 @@
       *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
       html { scroll-behavior: auto; }
     }
+
+    /* NAV */
+    .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(255,255,255,0.9); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); transition: box-shadow 0.3s ease, background-color 0.3s ease; }
+    .nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.08); background: #fff; }
+    .nav__inner { display: flex; align-items: center; justify-content: space-between; height: 68px; }
+    .nav__logo-text { font-family: var(--font-heading); font-size: 1.0625rem; font-weight: 700; color: var(--text); }
+    .nav__links { display: flex; gap: 32px; }
+    .nav__links a { font-size: 0.9375rem; font-weight: 500; color: var(--text-muted); transition: color 0.2s ease; }
+    .nav__links a:hover { color: var(--accent); }
+    .nav__hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
+    .nav__hamburger span { display: block; width: 22px; height: 2px; background: var(--text); border-radius: 2px; transition: all 0.2s ease; }
+
+    /* Mobile nav */
+    .nav-mobile { position: fixed; inset: 0; z-index: 200; background: #fff; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 32px; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
+    .nav-mobile.open { opacity: 1; pointer-events: all; }
+    .nav-mobile nav { display: flex; flex-direction: column; align-items: center; gap: 24px; }
+    .nav-mobile nav a { font-family: var(--font-heading); font-size: 1.5rem; font-weight: 600; color: var(--text); }
+    .nav-mobile nav a:hover { color: var(--accent); }
+    .nav-mobile__close { position: absolute; top: 24px; right: 24px; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text-muted); }
+
+    @media (max-width: 767px) {
+      .nav__links { display: none; }
+      .nav > .container > .btn { display: none; }
+      .nav__hamburger { display: flex; }
+    }
   </style>
 </head>
 <body>
+  <header class="nav" id="nav" role="banner">
+    <div class="container nav__inner">
+      <a href="#" class="nav__logo" aria-label="Ruslan Shogenov home">
+        <span class="nav__logo-text">Ruslan Shogenov</span>
+      </a>
+      <nav class="nav__links" aria-label="Main navigation">
+        <a href="#services">Services</a>
+        <a href="#process">Process</a>
+        <a href="#results">Results</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <a href="#book" class="btn btn--primary btn--sm">Book a Call</a>
+      <button class="nav__hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="nav-mobile">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile nav overlay -->
+  <div class="nav-mobile" id="nav-mobile" aria-hidden="true">
+    <button class="nav-mobile__close" aria-label="Close menu">✕</button>
+    <nav aria-label="Mobile navigation">
+      <a href="#services">Services</a>
+      <a href="#process">Process</a>
+      <a href="#results">Results</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+      <a href="#book" class="btn btn--primary">Book a Call</a>
+    </nav>
+  </div>
+
   <main id="main-content">
     <!-- sections go here -->
   </main>
   <script>
-    // JS goes here
+    // Sticky nav shadow on scroll
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    }, { passive: true });
+
+    // Mobile menu
+    const hamburger = document.querySelector('.nav__hamburger');
+    const mobileNav = document.getElementById('nav-mobile');
+    const mobileClose = document.querySelector('.nav-mobile__close');
+
+    function openMenu() {
+      mobileNav.classList.add('open');
+      mobileNav.setAttribute('aria-hidden', 'false');
+      hamburger.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeMenu() {
+      mobileNav.classList.remove('open');
+      mobileNav.setAttribute('aria-hidden', 'true');
+      hamburger.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }
+    hamburger.addEventListener('click', openMenu);
+    mobileClose.addEventListener('click', closeMenu);
+    mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
   </script>
 </body>
 </html>
