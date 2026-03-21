@@ -124,6 +124,18 @@
       .hero__ctas { flex-direction: column; }
       .hero__ctas .btn { justify-content: center; }
     }
+
+    /* PROOF BAR */
+    .proof-bar { background: var(--bg-alt); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 48px 24px; }
+    .proof-bar__inner { display: flex; flex-direction: column; gap: 40px; align-items: center; }
+    .proof-bar__stats { display: flex; gap: 64px; justify-content: center; flex-wrap: wrap; }
+    .proof-stat { text-align: center; }
+    .proof-stat__number { display: block; font-family: var(--font-heading); font-size: 2.5rem; font-weight: 700; color: var(--accent); line-height: 1; margin-bottom: 6px; }
+    .proof-stat__label { font-size: 0.875rem; color: var(--text-muted); font-weight: 500; }
+    .proof-bar__logos { text-align: center; }
+    .proof-bar__logos-label { font-size: 0.8125rem; font-weight: 500; color: var(--text-muted); display: block; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.06em; }
+    .proof-bar__logo-row { display: flex; gap: 40px; align-items: center; justify-content: center; flex-wrap: wrap; }
+    .logo-placeholder { width: 100px; height: 32px; border-radius: 4px; background: #d1d5db; }
   </style>
 </head>
 <body>
@@ -175,6 +187,35 @@
         </div>
       </div>
     </section>
+
+    <section class="proof-bar" aria-label="Social proof">
+      <div class="container proof-bar__inner">
+        <div class="proof-bar__stats">
+          <div class="proof-stat">
+            <span class="proof-stat__number" data-target="50" data-suffix="+">50+</span>
+            <span class="proof-stat__label">Product Launches</span>
+          </div>
+          <div class="proof-stat">
+            <span class="proof-stat__number" data-target="2" data-prefix="$" data-suffix="M+">$2M+</span>
+            <span class="proof-stat__label">Pipeline Generated</span>
+          </div>
+          <div class="proof-stat">
+            <span class="proof-stat__number" data-target="30" data-suffix="+">30+</span>
+            <span class="proof-stat__label">SaaS Clients Served</span>
+          </div>
+        </div>
+        <div class="proof-bar__logos" aria-label="Trusted by teams at these companies">
+          <span class="proof-bar__logos-label">Trusted by teams at</span>
+          <div class="proof-bar__logo-row">
+            <div class="logo-placeholder" aria-hidden="true"></div>
+            <div class="logo-placeholder" aria-hidden="true"></div>
+            <div class="logo-placeholder" aria-hidden="true"></div>
+            <div class="logo-placeholder" aria-hidden="true"></div>
+            <div class="logo-placeholder" aria-hidden="true"></div>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
   <script>
     // Sticky nav shadow on scroll
@@ -212,6 +253,37 @@
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && mobileNav.classList.contains('open')) closeMenu();
     });
+
+    // Animated counters
+    function easeOutQuad(t) { return t * (2 - t); }
+
+    function animateCounter(el) {
+      const target = parseFloat(el.dataset.target);
+      const prefix = el.dataset.prefix || '';
+      const suffix = el.dataset.suffix || '';
+      const duration = 1500;
+      const start = performance.now();
+      function update(now) {
+        const elapsed = now - start;
+        const progress = Math.min(elapsed / duration, 1);
+        const value = Math.round(easeOutQuad(progress) * target);
+        el.textContent = prefix + value + suffix;
+        if (progress < 1) requestAnimationFrame(update);
+      }
+      requestAnimationFrame(update);
+    }
+
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      const counterObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            animateCounter(entry.target);
+            counterObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.5 });
+      document.querySelectorAll('.proof-stat__number').forEach(el => counterObserver.observe(el));
+    }
   </script>
 </body>
 </html>
