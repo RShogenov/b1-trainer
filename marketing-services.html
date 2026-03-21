@@ -171,6 +171,29 @@
     .process-step__num { display: block; font-family: var(--font-heading); font-size: 3rem; font-weight: 700; color: var(--accent-light); line-height: 1; margin-bottom: 8px; }
     .process-step__title { font-size: 1.25rem; margin-bottom: 8px; color: var(--text); }
     .process-step__desc { font-size: 0.9375rem; }
+
+    /* RESULTS */
+    .results__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 32px; }
+    @media (max-width: 639px) { .results__grid { grid-template-columns: 1fr; } }
+    @media (min-width: 640px) and (max-width: 1023px) { .results__grid { grid-template-columns: repeat(2, 1fr); } }
+
+    .result-card { background: #fff; border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 32px; position: relative; overflow: hidden; transition: transform 0.25s ease, box-shadow 0.25s ease; }
+    .result-card::before { content: ''; position: absolute; inset: -2px; border-radius: calc(var(--radius-lg) + 2px); background: conic-gradient(from 0deg, var(--accent), #a5b4fc, var(--accent)); opacity: 0; z-index: -1; animation: borderRotate 3s linear infinite paused; transition: opacity 0.3s; }
+    .result-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
+    .result-card:hover::before { opacity: 1; animation-play-state: running; }
+    @media (prefers-reduced-motion: reduce) { .result-card:hover { transform: none; } .result-card::before { animation: none; } }
+    @media (hover: none) { .result-card::before { display: none; } }
+
+    .result-card__meta { font-size: 0.8125rem; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 12px; }
+    .result-card__challenge { font-size: 0.9375rem; margin-bottom: 24px; }
+    .result-card__outcome { border-top: 1px solid var(--border); padding-top: 20px; }
+    .result-card__stat { display: block; font-family: var(--font-heading); font-size: 2.25rem; font-weight: 700; color: var(--accent); line-height: 1; margin-bottom: 4px; }
+    .result-card__stat-label { font-size: 0.875rem; color: var(--text-muted); }
+
+    .results__cta { text-align: center; margin-top: 16px; }
+    .results__link { font-family: var(--font-heading); font-weight: 600; color: var(--accent); font-size: 1rem; display: inline-flex; align-items: center; gap: 6px; transition: gap 0.2s ease; }
+    .results__link:hover { gap: 10px; }
+    .results__link:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
   </style>
 </head>
 <body>
@@ -323,6 +346,43 @@
               <p class="process-step__desc text-muted">Measure, iterate, and scale what works. Continuous improvement until growth becomes predictable.</p>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section results" id="results" aria-labelledby="results-title">
+      <div class="container">
+        <p class="section-label">Results</p>
+        <h2 class="section-title" id="results-title">Work that drives outcomes</h2>
+        <p class="section-subtitle text-muted">Real results for real SaaS teams. Numbers are directional — details available on request.</p>
+        <div class="results__grid">
+          <article class="result-card reveal-up">
+            <div class="result-card__meta">B2B SaaS · Series A</div>
+            <p class="result-card__challenge text-muted">Repositioned core product messaging after stalled growth.</p>
+            <div class="result-card__outcome">
+              <span class="result-card__stat">40%</span>
+              <span class="result-card__stat-label">increase in trial-to-paid conversion</span>
+            </div>
+          </article>
+          <article class="result-card reveal-up" style="--delay: 100ms">
+            <div class="result-card__meta">B2B SaaS · Seed</div>
+            <p class="result-card__challenge text-muted">Built GTM strategy from scratch for a first-time founder.</p>
+            <div class="result-card__outcome">
+              <span class="result-card__stat">100</span>
+              <span class="result-card__stat-label">paying customers in 90 days</span>
+            </div>
+          </article>
+          <article class="result-card reveal-up" style="--delay: 200ms">
+            <div class="result-card__meta">Developer Tools · Series B</div>
+            <p class="result-card__challenge text-muted">Relaunched product with a new category narrative.</p>
+            <div class="result-card__outcome">
+              <span class="result-card__stat">3×</span>
+              <span class="result-card__stat-label">increase in inbound demo requests</span>
+            </div>
+          </article>
+        </div>
+        <div class="results__cta">
+          <a href="#book" class="results__link">See all case studies <span aria-hidden="true">→</span></a>
         </div>
       </div>
     </section>
