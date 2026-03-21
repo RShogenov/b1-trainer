@@ -158,6 +158,19 @@
     .reveal-up { opacity: 0; transform: translateY(24px); filter: blur(4px); transition: opacity 0.5s ease var(--delay, 0ms), transform 0.5s ease var(--delay, 0ms), filter 0.5s ease var(--delay, 0ms); }
     .reveal-up.revealed { opacity: 1; transform: translateY(0); filter: blur(0); }
     @media (prefers-reduced-motion: reduce) { .reveal-up { opacity: 1; transform: none; filter: none; transition: none; } }
+
+    /* PROCESS */
+    .process__steps { position: relative; display: flex; flex-direction: column; margin-top: 48px; }
+    .process__line { position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; height: 100%; transform: translateX(-50%); display: block; }
+    @media (max-width: 767px) { .process__line { display: none; } }
+
+    .process-step { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; padding: 40px 0; }
+    @media (max-width: 767px) { .process-step { grid-template-columns: 1fr; padding: 24px 0 24px 24px; border-left: 2px dashed var(--accent-light); margin-left: 12px; } .process-step__spacer { display: none; } }
+
+    .process-step__text { padding: 32px; background: #fff; border-radius: var(--radius-lg); box-shadow: var(--shadow); }
+    .process-step__num { display: block; font-family: var(--font-heading); font-size: 3rem; font-weight: 700; color: var(--accent-light); line-height: 1; margin-bottom: 8px; }
+    .process-step__title { font-size: 1.25rem; margin-bottom: 8px; color: var(--text); }
+    .process-step__desc { font-size: 0.9375rem; }
   </style>
 </head>
 <body>
@@ -269,6 +282,50 @@
         </div>
       </div>
     </section>
+
+    <section class="section section--alt process" id="process" aria-labelledby="process-title">
+      <div class="container">
+        <p class="section-label">How I work</p>
+        <h2 class="section-title" id="process-title">A process built for results</h2>
+        <div class="process__steps" id="process-steps">
+          <svg class="process__line" aria-hidden="true" viewBox="0 0 2 400" preserveAspectRatio="none">
+            <line x1="1" y1="0" x2="1" y2="400" stroke="#6366f1" stroke-width="2" stroke-dasharray="400" stroke-dashoffset="400" id="process-svg-line"/>
+          </svg>
+          <div class="process-step reveal-up">
+            <div class="process-step__text">
+              <span class="process-step__num" aria-hidden="true">01</span>
+              <h3 class="process-step__title">Discover</h3>
+              <p class="process-step__desc text-muted">Deep dive into your product, market, and competitive landscape to uncover what makes you different.</p>
+            </div>
+            <div class="process-step__spacer" aria-hidden="true"></div>
+          </div>
+          <div class="process-step reveal-up" style="--delay: 100ms">
+            <div class="process-step__spacer" aria-hidden="true"></div>
+            <div class="process-step__text">
+              <span class="process-step__num" aria-hidden="true">02</span>
+              <h3 class="process-step__title">Position</h3>
+              <p class="process-step__desc text-muted">Craft messaging that resonates with your ideal buyers and sets you apart from alternatives.</p>
+            </div>
+          </div>
+          <div class="process-step reveal-up" style="--delay: 200ms">
+            <div class="process-step__text">
+              <span class="process-step__num" aria-hidden="true">03</span>
+              <h3 class="process-step__title">Launch</h3>
+              <p class="process-step__desc text-muted">Execute go-to-market with precision and speed. From channel strategy to activation, nothing falls through the cracks.</p>
+            </div>
+            <div class="process-step__spacer" aria-hidden="true"></div>
+          </div>
+          <div class="process-step reveal-up" style="--delay: 300ms">
+            <div class="process-step__spacer" aria-hidden="true"></div>
+            <div class="process-step__text">
+              <span class="process-step__num" aria-hidden="true">04</span>
+              <h3 class="process-step__title">Optimize</h3>
+              <p class="process-step__desc text-muted">Measure, iterate, and scale what works. Continuous improvement until growth becomes predictable.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
   <script>
     // Sticky nav shadow on scroll
@@ -348,6 +405,21 @@
       });
     }, { threshold: 0.15 });
     document.querySelectorAll('.reveal-up').forEach(el => revealObserver.observe(el));
+
+    // Process SVG line draw
+    const svgLine = document.getElementById('process-svg-line');
+    if (svgLine && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      const lineObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            svgLine.style.transition = 'stroke-dashoffset 1.5s ease';
+            svgLine.style.strokeDashoffset = '0';
+            lineObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      lineObserver.observe(document.getElementById('process-steps'));
+    }
   </script>
 </body>
 </html>
