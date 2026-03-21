@@ -136,6 +136,28 @@
     .proof-bar__logos-label { font-size: 0.8125rem; font-weight: 500; color: var(--text-muted); display: block; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.06em; }
     .proof-bar__logo-row { display: flex; gap: 40px; align-items: center; justify-content: center; flex-wrap: wrap; }
     .logo-placeholder { width: 100px; height: 32px; border-radius: 4px; background: #d1d5db; }
+
+    /* SERVICES */
+    .services__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    @media (max-width: 639px) { .services__grid { grid-template-columns: 1fr; } }
+    @media (min-width: 640px) and (max-width: 1023px) { .services__grid { grid-template-columns: repeat(2, 1fr); } }
+
+    .service-card { position: relative; background: #fff; border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 32px; transition: transform 0.25s ease, box-shadow 0.25s ease; overflow: hidden; }
+    .service-card::before { content: ''; position: absolute; inset: -2px; border-radius: calc(var(--radius-lg) + 2px); background: conic-gradient(from 0deg, var(--accent), #a5b4fc, var(--accent)); opacity: 0; transition: opacity 0.3s ease; z-index: -1; animation: borderRotate 3s linear infinite paused; }
+    .service-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
+    .service-card:hover::before { opacity: 1; animation-play-state: running; }
+    @keyframes borderRotate { to { transform: rotate(360deg); } }
+    @media (prefers-reduced-motion: reduce) { .service-card:hover { transform: none; } .service-card::before { animation: none; } .service-card:hover::before { opacity: 1; background: var(--accent); } }
+    @media (hover: none) { .service-card::before { display: none; } }
+
+    .service-card__icon { width: 48px; height: 48px; border-radius: 12px; background: var(--accent-light); color: var(--accent); display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
+    .service-card__title { margin-bottom: 12px; font-size: 1.125rem; }
+    .service-card__desc { font-size: 0.9375rem; }
+
+    /* REVEAL ANIMATIONS */
+    .reveal-up { opacity: 0; transform: translateY(24px); filter: blur(4px); transition: opacity 0.5s ease var(--delay, 0ms), transform 0.5s ease var(--delay, 0ms), filter 0.5s ease var(--delay, 0ms); }
+    .reveal-up.revealed { opacity: 1; transform: translateY(0); filter: blur(0); }
+    @media (prefers-reduced-motion: reduce) { .reveal-up { opacity: 1; transform: none; filter: none; transition: none; } }
   </style>
 </head>
 <body>
@@ -216,6 +238,37 @@
         </div>
       </div>
     </section>
+
+    <section class="section services" id="services" aria-labelledby="services-title">
+      <div class="container">
+        <p class="section-label">What I do</p>
+        <h2 class="section-title" id="services-title">Services</h2>
+        <p class="section-subtitle text-muted">From positioning to launch — end-to-end product marketing that drives real results.</p>
+        <div class="services__grid">
+          <article class="service-card reveal-up">
+            <div class="service-card__icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+            </div>
+            <h3 class="service-card__title">Positioning &amp; Messaging</h3>
+            <p class="service-card__desc text-muted">Define what you stand for and why buyers should care. Build the narrative foundation your entire go-to-market depends on.</p>
+          </article>
+          <article class="service-card reveal-up" style="--delay: 100ms">
+            <div class="service-card__icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg>
+            </div>
+            <h3 class="service-card__title">Go-to-Market Strategy</h3>
+            <p class="service-card__desc text-muted">Launch playbooks, ICP definition, and channel strategy that drives pipeline from day one.</p>
+          </article>
+          <article class="service-card reveal-up" style="--delay: 200ms">
+            <div class="service-card__icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg>
+            </div>
+            <h3 class="service-card__title">Product Launch</h3>
+            <p class="service-card__desc text-muted">End-to-end launch execution from narrative to activation. I make sure your product lands with the impact it deserves.</p>
+          </article>
+        </div>
+      </div>
+    </section>
   </main>
   <script>
     // Sticky nav shadow on scroll
@@ -284,6 +337,17 @@
       }, { threshold: 0.5 });
       document.querySelectorAll('.proof-stat__number').forEach(el => counterObserver.observe(el));
     }
+
+    // Scroll reveal
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.reveal-up').forEach(el => revealObserver.observe(el));
   </script>
 </body>
 </html>
