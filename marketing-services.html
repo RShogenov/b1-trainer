@@ -219,6 +219,42 @@
     .testimonial-card__footer { border-top: 1px solid var(--border); padding-top: 16px; }
     .testimonial-card__name { font-family: var(--font-heading); font-weight: 600; font-size: 0.9375rem; color: var(--text); display: block; font-style: normal; }
     .testimonial-card__role { font-size: 0.8125rem; color: var(--text-muted); }
+
+    /* CTA SECTION */
+    .cta-section { position: relative; background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%); padding: 120px 24px; overflow: hidden; text-align: center; }
+    .cta-section__orbs { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+    .cta-orb { position: absolute; border-radius: 50%; background: #fff; }
+    .cta-orb--1 { width: 400px; height: 400px; top: -100px; left: -100px; opacity: 0.08; animation: orbDrift1 12s ease-in-out infinite alternate; }
+    .cta-orb--2 { width: 300px; height: 300px; bottom: -80px; right: -60px; opacity: 0.06; animation: orbDrift2 15s ease-in-out infinite alternate; }
+    .cta-orb--3 { width: 200px; height: 200px; top: 50%; right: 20%; opacity: 0.05; animation: orbDrift3 10s ease-in-out infinite alternate; }
+    @keyframes orbDrift1 { from { transform: translate(0,0); } to { transform: translate(30px,20px); } }
+    @keyframes orbDrift2 { from { transform: translate(0,0); } to { transform: translate(-20px,-30px); } }
+    @keyframes orbDrift3 { from { transform: translate(0,0); } to { transform: translate(25px,-15px); } }
+    @media (prefers-reduced-motion: reduce) { .cta-orb { animation: none; opacity: 0.05; } }
+
+    .cta-section__content { position: relative; z-index: 1; }
+    .cta-section__title { color: #fff; font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 16px; }
+    .cta-section__sub { color: rgba(255,255,255,0.85); font-size: 1.125rem; margin-bottom: 40px; }
+
+    /* FOOTER */
+    .footer { background: #fff; border-top: 1px solid var(--border); padding: 48px 24px 0; }
+    .footer__inner { display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap; padding-bottom: 32px; }
+    .footer__brand { display: flex; flex-direction: column; gap: 4px; }
+    .footer__name { font-family: var(--font-heading); font-weight: 700; font-size: 1rem; color: var(--text); }
+    .footer__tagline { font-size: 0.875rem; color: var(--text-muted); }
+    .footer__nav { display: flex; gap: 24px; flex-wrap: wrap; }
+    .footer__nav a { font-size: 0.9375rem; color: var(--text-muted); transition: color 0.2s ease; }
+    .footer__nav a:hover { color: var(--accent); }
+    .footer__social { display: flex; gap: 16px; }
+    .footer__social a { color: var(--text-muted); transition: color 0.2s ease; }
+    .footer__social a:hover { color: var(--accent); }
+    .footer__bottom { border-top: 1px solid var(--border); padding: 16px 0; }
+    .footer__bottom p { font-size: 0.8125rem; color: var(--text-muted); }
+
+    @media (max-width: 767px) {
+      .footer__inner { flex-direction: column; align-items: flex-start; }
+      .footer__nav { display: none; }
+    }
   </style>
 </head>
 <body>
@@ -472,7 +508,49 @@
         </div>
       </div>
     </section>
+
+    <section class="cta-section" id="book" aria-labelledby="cta-title">
+      <div class="cta-section__orbs" aria-hidden="true">
+        <div class="cta-orb cta-orb--1"></div>
+        <div class="cta-orb cta-orb--2"></div>
+        <div class="cta-orb cta-orb--3"></div>
+      </div>
+      <div class="container cta-section__content">
+        <h2 id="cta-title" class="cta-section__title">Ready to launch smarter?</h2>
+        <p class="cta-section__sub">Book a free 30-minute strategy call. No pitch, just value.</p>
+        <a href="mailto:ruslan@rushogen.com" class="btn btn--white">Book a Call <span aria-hidden="true">→</span></a>
+      </div>
+    </section>
   </main>
+
+  <footer class="footer" id="contact" role="contentinfo">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <span class="footer__name">Ruslan Shogenov</span>
+        <span class="footer__tagline">Product Marketing Consultant</span>
+      </div>
+      <nav class="footer__nav" aria-label="Footer navigation">
+        <a href="#services">Services</a>
+        <a href="#process">Process</a>
+        <a href="#results">Results</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="footer__social">
+        <a href="https://linkedin.com/in/ruslanshogenov" target="_blank" rel="noopener" aria-label="LinkedIn profile">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+        <a href="mailto:ruslan@rushogen.com" aria-label="Send email">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <div class="container">
+        <p>© 2026 Ruslan Shogenov. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
   <script>
     // Sticky nav shadow on scroll
     const nav = document.getElementById('nav');
