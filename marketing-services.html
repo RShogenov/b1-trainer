@@ -53,6 +53,7 @@
     .section-label { font-family: var(--font-heading); font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
     .section-title { margin-bottom: 16px; }
     .section-subtitle { max-width: 540px; margin-bottom: 48px; }
+    [id] { scroll-margin-top: 80px; }
 
     /* BUTTONS */
     .btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; border-radius: 8px; font-family: var(--font-heading); font-size: 0.9375rem; font-weight: 600; cursor: pointer; border: none; transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease; text-decoration: none; }
@@ -82,22 +83,26 @@
     .nav__links { display: flex; gap: 32px; }
     .nav__links a { font-size: 0.9375rem; font-weight: 500; color: var(--text-muted); transition: color 0.2s ease; }
     .nav__links a:hover { color: var(--accent); }
-    .nav__hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
+    .nav__hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 11px; }
     .nav__hamburger span { display: block; width: 22px; height: 2px; background: var(--text); border-radius: 2px; transition: all 0.2s ease; }
+    .nav__hamburger[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav__hamburger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+    .nav__hamburger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
     /* Mobile nav */
     .nav-mobile { position: fixed; inset: 0; z-index: 200; background: #fff; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 32px; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
-    .nav-mobile.open { opacity: 1; pointer-events: all; }
+    .nav-mobile.open { opacity: 1; pointer-events: auto; }
     .nav-mobile nav { display: flex; flex-direction: column; align-items: center; gap: 24px; }
     .nav-mobile nav a { font-family: var(--font-heading); font-size: 1.5rem; font-weight: 600; color: var(--text); }
     .nav-mobile nav a:hover { color: var(--accent); }
-    .nav-mobile__close { position: absolute; top: 24px; right: 24px; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text-muted); }
+    .nav-mobile__close { position: absolute; top: 24px; right: 24px; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text-muted); padding: 11px; }
 
     @media (max-width: 767px) {
       .nav__links { display: none; }
-      .nav > .container > .btn { display: none; }
+      .nav__cta { display: none; }
       .nav__hamburger { display: flex; }
     }
+    @media (min-width: 768px) { .nav__cta { display: inline-flex; } }
   </style>
 </head>
 <body>
@@ -113,7 +118,7 @@
         <a href="#about">About</a>
         <a href="#contact">Contact</a>
       </nav>
-      <a href="#book" class="btn btn--primary btn--sm">Book a Call</a>
+      <a href="#book" class="btn btn--primary btn--sm nav__cta">Book a Call</a>
       <button class="nav__hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="nav-mobile">
         <span></span><span></span><span></span>
       </button>
@@ -121,7 +126,7 @@
   </header>
 
   <!-- Mobile nav overlay -->
-  <div class="nav-mobile" id="nav-mobile" aria-hidden="true">
+  <div class="nav-mobile" id="nav-mobile" aria-hidden="true" inert>
     <button class="nav-mobile__close" aria-label="Close menu">✕</button>
     <nav aria-label="Mobile navigation">
       <a href="#services">Services</a>
@@ -150,19 +155,28 @@
 
     function openMenu() {
       mobileNav.classList.add('open');
-      mobileNav.setAttribute('aria-hidden', 'false');
+      mobileNav.removeAttribute('aria-hidden');
+      mobileNav.removeAttribute('inert');
       hamburger.setAttribute('aria-expanded', 'true');
+      hamburger.setAttribute('aria-label', 'Close menu');
       document.body.style.overflow = 'hidden';
+      mobileClose.focus();
     }
     function closeMenu() {
       mobileNav.classList.remove('open');
       mobileNav.setAttribute('aria-hidden', 'true');
+      mobileNav.setAttribute('inert', '');
       hamburger.setAttribute('aria-expanded', 'false');
+      hamburger.setAttribute('aria-label', 'Open menu');
       document.body.style.overflow = '';
+      hamburger.focus();
     }
     hamburger.addEventListener('click', openMenu);
     mobileClose.addEventListener('click', closeMenu);
     mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && mobileNav.classList.contains('open')) closeMenu();
+    });
   </script>
 </body>
 </html>
