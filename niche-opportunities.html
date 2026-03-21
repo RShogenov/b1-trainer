@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Niche SaaS Opportunity Report — Deep Research</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #080807;
+  --bg2: #0f0f0d;
+  --bg3: #171714;
+  --bg4: #1e1e1a;
+  --border: #252520;
+  --border2: #333330;
+  --amber: #e8990a;
+  --amber2: #f5b731;
+  --amber-bg: rgba(232,153,10,0.08);
+  --amber-border: rgba(232,153,10,0.2);
+  --green: #3fb950;
+  --green-bg: rgba(63,185,80,0.08);
+  --red: #f85149;
+  --red-bg: rgba(248,81,73,0.08);
+  --blue: #58a6ff;
+  --text: #e3e0d5;
+  --text2: #9d9a8e;
+  --text3: #5a5750;
+  --serif: 'Playfair Display', Georgia, serif;
+  --mono: 'IBM Plex Mono', monospace;
+  --sans: 'IBM Plex Sans', sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--sans); font-size: 14px; line-height: 1.6; }
+
+/* grain */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* ── NAV ── */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(8,8,7,0.94); backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 40px; height: 52px;
+}
+.nav-brand { font-family: var(--mono); font-size: 10px; letter-spacing: .2em; color: var(--amber); text-transform: uppercase; }
+.nav-links { display: flex; gap: 4px; }
+.nav-link {
+  font-family: var(--mono); font-size: 10px; letter-spacing: .1em;
+  color: var(--text3); padding: 6px 10px; cursor: pointer;
+  border: 1px solid transparent; border-radius: 2px;
+  transition: all .15s; text-decoration: none; text-transform: uppercase;
+}
+.nav-link:hover, .nav-link.active { color: var(--amber); border-color: var(--amber-border); background: var(--amber-bg); }
+
+/* ── HERO ── */
+.hero {
+  padding: 72px 40px 0;
+  border-bottom: 1px solid var(--border);
+  background: radial-gradient(ellipse 70% 50% at 65% 40%, rgba(232,153,10,.05) 0%, transparent 65%);
+}
+.eyebrow {
+  font-family: var(--mono); font-size: 10px; letter-spacing: .22em;
+  color: var(--amber); text-transform: uppercase;
+  display: flex; align-items: center; gap: 12px; margin-bottom: 22px;
+}
+.eyebrow::before { content: ''; display: block; width: 28px; height: 1px; background: var(--amber); }
+h1 {
+  font-family: var(--serif); font-size: clamp(40px, 5.5vw, 80px);
+  font-weight: 900; line-height: 1.04; letter-spacing: -.025em;
+  max-width: 900px; margin-bottom: 22px;
+}
+h1 em { font-style: italic; color: var(--amber2); }
+.hero-body { font-size: 14px; color: var(--text2); max-width: 580px; line-height: 1.75; font-weight: 300; margin-bottom: 52px; }
+
+/* stat strip */
+.stat-strip {
+  display: grid; grid-template-columns: repeat(5, 1fr);
+  border-top: 1px solid var(--border);
+}
+.stat-item {
+  padding: 24px 28px; border-right: 1px solid var(--border);
+  opacity: 0; animation: fadeUp .5s ease forwards;
+}
+.stat-item:last-child { border-right: none; }
+.stat-n { font-family: var(--serif); font-size: 40px; font-weight: 900; color: var(--amber2); line-height: 1; margin-bottom: 4px; }
+.stat-l { font-family: var(--mono); font-size: 9px; color: var(--text3); letter-spacing: .15em; text-transform: uppercase; line-height: 1.5; }
+.stat-item:nth-child(1){animation-delay:.05s}.stat-item:nth-child(2){animation-delay:.1s}
+.stat-item:nth-child(3){animation-delay:.15s}.stat-item:nth-child(4){animation-delay:.2s}
+.stat-item:nth-child(5){animation-delay:.25s}
+
+/* ── SECTION WRAPPER ── */
+.section { padding: 56px 40px; border-bottom: 1px solid var(--border); }
+.section:last-child { border-bottom: none; }
+.section-label {
+  font-family: var(--mono); font-size: 9px; letter-spacing: .22em;
+  color: var(--text3); text-transform: uppercase; margin-bottom: 8px;
+}
+.section-title { font-family: var(--serif); font-size: 28px; font-weight: 700; margin-bottom: 32px; }
+
+/* ── OPPORTUNITY CARD ── */
+.opp-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); }
+.opp-card { background: var(--bg2); padding: 32px; }
+.opp-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 20px; }
+.opp-rank { font-family: var(--serif); font-size: 56px; font-weight: 900; color: rgba(232,153,10,.12); line-height: 1; }
+.opp-badge {
+  font-family: var(--mono); font-size: 9px; letter-spacing: .12em;
+  padding: 4px 10px; border-radius: 2px; text-transform: uppercase;
+}
+.badge-low { background: var(--green-bg); color: var(--green); border: 1px solid rgba(63,185,80,.2); }
+.badge-med { background: var(--amber-bg); color: var(--amber2); border: 1px solid var(--amber-border); }
+.badge-high { background: var(--red-bg); color: var(--red); border: 1px solid rgba(248,81,73,.2); }
+.opp-name { font-family: var(--serif); font-size: 22px; font-weight: 700; margin-bottom: 8px; line-height: 1.2; }
+.opp-tagline { font-size: 12px; color: var(--text2); font-weight: 300; line-height: 1.65; margin-bottom: 24px; }
+
+/* data row */
+.data-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
+.data-cell { background: var(--bg3); border: 1px solid var(--border); padding: 12px 14px; }
+.dc-label { font-family: var(--mono); font-size: 9px; color: var(--text3); letter-spacing: .12em; text-transform: uppercase; margin-bottom: 4px; }
+.dc-value { font-family: var(--mono); font-size: 14px; font-weight: 500; color: var(--text); }
+.dc-value.amber { color: var(--amber2); }
+.dc-value.green { color: var(--green); }
+
+/* quote */
+.quote-block { border-left: 2px solid var(--amber); padding: 10px 14px; margin: 14px 0; background: var(--amber-bg); }
+.quote-text { font-size: 12px; font-style: italic; color: var(--text); line-height: 1.65; }
+.quote-source { font-family: var(--mono); font-size: 9px; color: var(--text3); margin-top: 5px; letter-spacing: .08em; }
+
+/* divider label */
+.divider-label {
+  display: flex; align-items: center; gap: 12px;
+  font-family: var(--mono); font-size: 9px; letter-spacing: .18em;
+  color: var(--text3); text-transform: uppercase; margin: 20px 0 12px;
+}
+.divider-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+/* mrr table */
+.mrr-row { display: flex; align-items: center; gap: 12px; margin: 6px 0; }
+.mrr-pct { font-family: var(--mono); font-size: 10px; color: var(--text3); width: 36px; flex-shrink: 0; }
+.mrr-bar-wrap { flex: 1; height: 4px; background: var(--bg4); border-radius: 2px; overflow: hidden; }
+.mrr-bar { height: 100%; background: var(--amber); border-radius: 2px; transition: width .6s ease; }
+.mrr-val { font-family: var(--mono); font-size: 11px; font-weight: 500; color: var(--amber2); width: 90px; text-align: right; flex-shrink: 0; }
+
+/* ── COMPETITOR TABLE ── */
+.comp-section { margin-top: 48px; }
+.comp-table-wrap { overflow-x: auto; border: 1px solid var(--border); }
+table { width: 100%; border-collapse: collapse; }
+thead { background: var(--bg3); }
+th {
+  font-family: var(--mono); font-size: 9px; letter-spacing: .14em;
+  color: var(--text3); text-transform: uppercase;
+  padding: 12px 16px; text-align: left; border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+td { padding: 13px 16px; border-bottom: 1px solid var(--border); vertical-align: top; font-size: 12px; }
+tr:last-child td { border-bottom: none; }
+tr:hover td { background: var(--bg3); }
+.t-name { font-weight: 600; color: var(--text); }
+.t-price { font-family: var(--mono); font-size: 11px; color: var(--amber2); }
+.t-rating { font-family: var(--mono); font-size: 11px; }
+.t-pain { color: var(--text2); font-size: 11px; line-height: 1.55; }
+.t-pain em { color: var(--red); font-style: normal; }
+.stars { color: var(--amber2); }
+.review-count { color: var(--text3); font-size: 10px; }
+
+/* ── MASTER COMPARISON ── */
+.master-grid {
+  display: grid;
+  grid-template-columns: 180px repeat(5, 1fr);
+  border: 1px solid var(--border);
+  font-family: var(--mono); font-size: 11px;
+}
+.mg-cell {
+  padding: 13px 14px; border-bottom: 1px solid var(--border);
+  border-right: 1px solid var(--border); line-height: 1.45;
+}
+.mg-cell:last-child { border-right: none; }
+.mg-header .mg-cell { background: var(--bg3); color: var(--text3); font-size: 9px; letter-spacing: .12em; text-transform: uppercase; }
+.mg-row:nth-child(even) .mg-cell { background: rgba(23,23,20,.5); }
+.mg-row:hover .mg-cell { background: var(--bg3); }
+.mg-row .mg-cell:first-child { color: var(--text); font-size: 10px; }
+.v-high { color: var(--green); } .v-med { color: var(--amber2); } .v-low { color: var(--red); }
+.star-row { letter-spacing: .02em; }
+
+/* ── QUOTES WALL ── */
+.quotes-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); }
+.q-card { background: var(--bg2); padding: 24px; }
+.q-niche { font-family: var(--mono); font-size: 9px; color: var(--amber); letter-spacing: .12em; text-transform: uppercase; margin-bottom: 10px; }
+.q-text { font-size: 13px; font-style: italic; color: var(--text); line-height: 1.7; margin-bottom: 10px; }
+.q-src { font-family: var(--mono); font-size: 9px; color: var(--text3); letter-spacing: .08em; }
+
+/* ── FULL NICHE DEEP DIVES ── */
+.niche-section { border-bottom: 1px solid var(--border); }
+.niche-hero {
+  padding: 52px 40px 40px;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  position: relative; overflow: hidden;
+}
+.niche-hero::before {
+  content: '';
+  position: absolute; right: 0; top: 0; bottom: 0; width: 40%;
+  background: radial-gradient(ellipse 80% 100% at 100% 50%, rgba(232,153,10,.04) 0%, transparent 70%);
+}
+.niche-num { font-family: var(--mono); font-size: 10px; color: var(--text3); letter-spacing: .18em; margin-bottom: 10px; }
+.niche-title { font-family: var(--serif); font-size: 32px; font-weight: 900; margin-bottom: 10px; line-height: 1.15; }
+.niche-sub { font-size: 13px; color: var(--text2); font-weight: 300; max-width: 560px; }
+.niche-body { padding: 40px; }
+
+/* two-col layout */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-bottom: 32px; }
+.col-block { }
+.col-title { font-family: var(--mono); font-size: 9px; color: var(--amber); letter-spacing: .18em; text-transform: uppercase; margin-bottom: 14px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.market-stat { display: flex; justify-content: space-between; align-items: baseline; padding: 8px 0; border-bottom: 1px solid var(--border); }
+.market-stat:last-child { border-bottom: none; }
+.ms-label { font-size: 12px; color: var(--text2); font-weight: 300; }
+.ms-value { font-family: var(--mono); font-size: 13px; font-weight: 500; color: var(--text); }
+.ms-value.highlight { color: var(--amber2); }
+
+/* opportunity box */
+.opp-box {
+  border: 1px solid var(--amber-border);
+  background: var(--amber-bg);
+  padding: 20px 24px;
+  margin: 24px 0;
+}
+.opp-box-title { font-family: var(--mono); font-size: 9px; color: var(--amber); letter-spacing: .18em; text-transform: uppercase; margin-bottom: 10px; }
+.opp-box-text { font-size: 13px; color: var(--text); line-height: 1.7; font-weight: 300; }
+
+/* ── FOOTER ── */
+footer {
+  padding: 28px 40px;
+  border-top: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.footer-l { font-family: var(--mono); font-size: 9px; color: var(--text3); letter-spacing: .12em; }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
+.hero { animation: fadeUp .6s ease forwards; }
+
+/* scrollbar */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 2px; }
+
+@media (max-width:1100px) {
+  .opp-grid { grid-template-columns: 1fr; }
+  .two-col { grid-template-columns: 1fr; }
+  .master-grid { grid-template-columns: 140px repeat(5,1fr); font-size:10px; }
+  .quotes-grid { grid-template-columns: 1fr; }
+  .stat-strip { grid-template-columns: repeat(3,1fr); }
+}
+@media (max-width:700px) {
+  nav, .hero, .section, .niche-hero, .niche-body, footer { padding-left:20px; padding-right:20px; }
+  .stat-strip { grid-template-columns: 1fr 1fr; }
+  .data-row { grid-template-columns: 1fr; }
+  .master-grid { display:block; overflow-x:auto; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">Niche Intel — Mar 2026</div>
+  <div class="nav-links">
+    <a class="nav-link" href="#overview">Overview</a>
+    <a class="nav-link" href="#etsy">Etsy</a>
+    <a class="nav-link" href="#tutors">Tutors</a>
+    <a class="nav-link" href="#groomers">Groomers</a>
+    <a class="nav-link" href="#landlords">Landlords</a>
+    <a class="nav-link" href="#cleaning">Cleaning</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="eyebrow">Deep Research — 5 Niche Opportunities</div>
+  <h1>Where <em>non-tech pros</em><br>bleed money on<br>broken workflows</h1>
+  <p class="hero-body">Real market data from IBISWorld, BLS, and Etsy SEC filings. Verbatim complaints from Capterra, G2, and Reddit forums. Exact competitor pricing. MRR models at 0.1%, 0.5%, and 1% capture. Five niches where the audience cannot build the solution themselves — and is already paying for inferior tools.</p>
+
+  <div class="stat-strip">
+    <div class="stat-item">
+      <div class="stat-n">5.6M</div>
+      <div class="stat-l">Active Etsy sellers<br>(Q4 2024, SEC filing)</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-n">356K</div>
+      <div class="stat-l">US residential cleaning<br>businesses (IBISWorld)</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-n">8.5M</div>
+      <div class="stat-l">US landlords with<br>1–10 units (HUD/IRS)</div>
+    </div>
+    <div class="stat-n" style="display:none"></div>
+    <div class="stat-item">
+      <div class="stat-n">1.9M</div>
+      <div class="stat-l">Landlords still on<br>spreadsheets (RentRedi 2025)</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-n">99.7%</div>
+      <div class="stat-l">Of cleaning market<br>unserved after 11 yrs (ZenMaid)</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SECTION 1: OVERVIEW MATRIX ── -->
+<section class="section" id="overview">
+  <div class="section-label">Master Comparison</div>
+  <div class="section-title">5 Niches at a Glance</div>
+
+  <div style="overflow-x:auto; border: 1px solid var(--border);">
+    <div class="master-grid">
+      <div class="mg-row mg-header" style="display:contents;">
+        <div class="mg-cell">Niche</div>
+        <div class="mg-cell">Market Size</div>
+        <div class="mg-cell">Price / mo</div>
+        <div class="mg-cell">Build</div>
+        <div class="mg-cell">Top Competitor Weakness</div>
+        <div class="mg-cell">MRR @ 0.5%</div>
+      </div>
+      <div class="mg-row" style="display:contents;">
+        <div class="mg-cell">Etsy / Handmade Sellers</div>
+        <div class="mg-cell v-high">4.76M handmade sellers</div>
+        <div class="mg-cell">$15–20/mo</div>
+        <div class="mg-cell v-high">Low</div>
+        <div class="mg-cell">Craftybase: auto-COGS locked at $99/mo</div>
+        <div class="mg-cell v-high">$213K MRR</div>
+      </div>
+      <div class="mg-row" style="display:contents;">
+        <div class="mg-cell">Small Landlords</div>
+        <div class="mg-cell v-high">8.5M (1–10 units)</div>
+        <div class="mg-cell">$15–20/mo</div>
+        <div class="mg-cell v-med">Medium</div>
+        <div class="mg-cell">AppFolio: 50-unit minimum. Buildium: price hikes, overkill</div>
+        <div class="mg-cell v-high">$637K MRR</div>
+      </div>
+      <div class="mg-row" style="display:contents;">
+        <div class="mg-cell">House Cleaning (1–10 staff)</div>
+        <div class="mg-cell v-med">356K businesses</div>
+        <div class="mg-cell">$49–79/mo</div>
+        <div class="mg-cell v-med">Medium</div>
+        <div class="mg-cell">ZenMaid: 3.2/5 mobile app, per-cleaner pricing</div>
+        <div class="mg-cell v-med">$127K MRR</div>
+      </div>
+      <div class="mg-row" style="display:contents;">
+        <div class="mg-cell">Dog Groomers (solo)</div>
+        <div class="mg-cell v-med">162K businesses</div>
+        <div class="mg-cell">$39–49/mo</div>
+        <div class="mg-cell v-high">Low–Med</div>
+        <div class="mg-cell">Gingr: VC-backed, tripled prices overnight (G2: 3.8/5)</div>
+        <div class="mg-cell v-med">$34K MRR</div>
+      </div>
+      <div class="mg-row" style="display:contents;">
+        <div class="mg-cell">Private Tutors</div>
+        <div class="mg-cell">300K+ independents</div>
+        <div class="mg-cell">$15–19/mo</div>
+        <div class="mg-cell v-high">Low</div>
+        <div class="mg-cell">TutorBird: no mobile app, no video, limited reporting</div>
+        <div class="mg-cell">$28K MRR</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quotes Wall -->
+  <div style="margin-top: 48px;">
+    <div class="section-label" style="margin-bottom: 14px;">Verbatim Complaints — From Real Users</div>
+    <div class="quotes-grid">
+      <div class="q-card">
+        <div class="q-niche">Gingr (Dog Grooming)</div>
+        <div class="q-text">"New private equity owners decided to back out of our contract and tripled our monthly price overnight without telling us first. They required us to use their payment processor which is 3x more expensive than ours."</div>
+        <div class="q-src">— Capterra verified review</div>
+      </div>
+      <div class="q-card">
+        <div class="q-niche">Buildium (Landlords)</div>
+        <div class="q-text">"Most of it was overkill for me. I just needed rent collection, lease signing, and maintenance tracking. If you buy it for one year they still add two to three price increases per year."</div>
+        <div class="q-src">— Capterra verified review</div>
+      </div>
+      <div class="q-card">
+        <div class="q-niche">Craftybase (Etsy Sellers)</div>
+        <div class="q-text">"Having materials automatically deduct when I sell a product is very basic functionality that I should not have to pay $1,000/year to have."</div>
+        <div class="q-src">— Capterra verified review</div>
+      </div>
+      <div class="q-card">
+        <div class="q-niche">Housecall Pro (Cleaning)</div>
+        <div class="q-text">"Housecall Pro was great until the beginning of 2025 when users could no longer talk to a human for tech support and would only communicate through AI. Critical, established features break with no warning."</div>
+        <div class="q-src">— G2 verified review</div>
+      </div>
+      <div class="q-card">
+        <div class="q-niche">TutorCruncher (Tutors)</div>
+        <div class="q-text">"The fees and Stripe Split payments system is very expensive and is too slow to release funds, with tutors not happy that they have to wait 7 working days to get paid."</div>
+        <div class="q-src">— Capterra verified review</div>
+      </div>
+      <div class="q-card">
+        <div class="q-niche">DaySmart Pet (Groomers)</div>
+        <div class="q-text">"I loved DaySmart from 2013 to 2023. Then they changed the tech support to AI. Before you could talk to an agent and get your software problems resolved in less than 30 mins. Not now!!!!!"</div>
+        <div class="q-src">— Capterra long-term user review</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     NICHE 1 — ETSY / HANDMADE SELLERS
+═══════════════════════════════════════ -->
+<section class="niche-section" id="etsy">
+  <div class="niche-hero">
+    <div class="niche-num">Niche 01 / 05</div>
+    <div class="niche-title">Etsy & Handmade Sellers</div>
+    <div class="niche-sub">A profit calculator that shows true COGS — materials, labor, Etsy fees, packaging, shipping — and flags listings where the seller is losing money without knowing it.</div>
+  </div>
+  <div class="niche-body">
+
+    <div class="two-col">
+      <!-- Market data -->
+      <div class="col-block">
+        <div class="col-title">Market Size (Source: Etsy Inc. 10-K, Q4 2024)</div>
+        <div class="market-stat"><span class="ms-label">Active Etsy sellers</span><span class="ms-value highlight">5.6 million</span></div>
+        <div class="market-stat"><span class="ms-label">Handmade/physical goods sellers (~85%)</span><span class="ms-value highlight">4.76 million</span></div>
+        <div class="market-stat"><span class="ms-label">Earning $5K+/yr (realistic SAM)</span><span class="ms-value">~2.85 million</span></div>
+        <div class="market-stat"><span class="ms-label">Etsy marketplace GMS (2024)</span><span class="ms-value">$10.9 billion</span></div>
+        <div class="market-stat"><span class="ms-label">Median annual seller profit</span><span class="ms-value">~$440/year</span></div>
+        <div class="market-stat"><span class="ms-label">% earning under $5K struggling to profit</span><span class="ms-value">49%</span></div>
+        <div class="market-stat"><span class="ms-label">Sellers who run shops entirely solo</span><span class="ms-value">88%</span></div>
+        <div class="market-stat"><span class="ms-label">Etsy fees as % of gross (fees stacked)</span><span class="ms-value">15–25%</span></div>
+      </div>
+
+      <!-- Pain evidence -->
+      <div class="col-block">
+        <div class="col-title">Pain Evidence (Reddit / Forums)</div>
+        <div class="quote-block">
+          <div class="quote-text">"A maker priced green yarn socks at $5 despite a verified COGS of $5.10 — losing a dime for every pair she produces."</div>
+          <div class="quote-source">Kashoo / Etsy seller community case study (real example, not hypothetical)</div>
+        </div>
+        <div class="quote-block">
+          <div class="quote-text">"Sellers who guess at pricing usually end up underpricing, which is a fast track to burnout."</div>
+          <div class="quote-source">r/EtsySellers — aggregated thread pattern</div>
+        </div>
+        <div class="quote-block">
+          <div class="quote-text">"Labor costs are the reason so many handmade sellers end up working for less than minimum wage."</div>
+          <div class="quote-source">Craftybase blog — seller submission data</div>
+        </div>
+        <p style="font-size:12px; color:var(--text2); margin-top:12px;">Three documented causes of underpricing: (1) emotional pricing — "Would I pay $45 for this?"; (2) copying competitor prices without knowing their cost structure; (3) forgetting hidden costs (listing fees, shipping materials, photography time).</p>
+      </div>
+    </div>
+
+    <!-- MRR model -->
+    <div class="divider-label">Revenue Model @ $15/mo</div>
+    <div class="mrr-row"><span class="mrr-pct">0.1%</span><div class="mrr-bar-wrap"><div class="mrr-bar" style="width:10%"></div></div><span class="mrr-val">$42,750/mo</span></div>
+    <div class="mrr-row"><span class="mrr-pct">0.5%</span><div class="mrr-bar-wrap"><div class="mrr-bar" style="width:50%"></div></div><span class="mrr-val">$213,750/mo</span></div>
+    <div class="mrr-row"><span class="mrr-pct">1.0%</span><div class="mrr-bar-wrap"><div class="mrr-bar" style="width:100%"></div></div><span class="mrr-val">$427,500/mo</span></div>
+
+    <!-- Competitor table -->
+    <div class="divider-label" style="margin-top:32px;">Competitor Analysis</div>
+    <div class="comp-table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Tool</th>
+            <th>Exact Pricing</th>
+            <th>Rating</th>
+            <th>Critical Complaints</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="t-name">Craftybase</span><br><span style="font-size:10px;color:var(--text3);">Primary COGS competitor</span></td>
+            <td><span class="t-price">Pro: $24/mo<br>Studio: $49/mo<br>Indie: $99/mo<br>Business: $199/mo<br>Growth: $349/mo</span></td>
+            <td><span class="t-rating"><span class="stars">★★★★</span>✩<br><span class="review-count">4.6/5 · 190+ reviews (Capterra)</span></span></td>
+            <td><span class="t-pain"><em>"Auto-manufacture [auto-deduct materials on sale] locked behind $99/mo Indie plan — obvious money grab."</em><br><em>"Steep learning curve and limited integrations."</em><br>No Ecwid, TikTok Shop, BigCommerce integration.</span></td>
+          </tr>
+          <tr>
+            <td><span class="t-name">Inventora</span><br><span style="font-size:10px;color:var(--text3);">Simpler alternative</span></td>
+            <td><span class="t-price">Hobby: Free<br>Starter: $19/mo<br>Business: $39/mo<br>Growth: $99/mo</span></td>
+            <td><span class="t-rating"><span class="stars">★★★★</span>✩<br><span class="review-count">Limited reviews (early stage)</span></span></td>
+            <td><span class="t-pain">More affordable than Craftybase but limited review data. Recently added multi-site integrations.</span></td>
+          </tr>
+          <tr>
+            <td><span class="t-name">A2X</span><br><span style="font-size:10px;color:var(--text3);">Accounting only, not COGS</span></td>
+            <td><span class="t-price">From $19/mo (200 orders)<br>Multi-channel from $89/mo</span></td>
+            <td><span class="t-rating"><span class="stars">★★★</span>✩✩<br><span class="review-count">Moderate reviews</span></span></td>
+            <td><span class="t-pain"><em>"Complex setup, limited reporting, high costs."</em> Reconciles payouts — does NOT calculate per-product COGS. Not a direct competitor but used as a workaround.</span></td>
+          </tr>
+          <tr>
+            <td><span class="t-name">Paper & Spark</span><br><span style="font-size:10px;color:var(--text3);">Spreadsheet template (Etsy)</span></td>
+            <td><span class="t-price">$25–35 one-time</span></td>
+            <td><span class="t-rating">—</span></td>
+            <td><span class="t-pain">Thousands of sellers pay for a spreadsheet template because no affordable SaaS exists. Strongest signal of unmet demand at the entry level.</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="opp-box" style="margin-top:24px;">
+      <div class="opp-box-title">The Product Opportunity</div>
+      <div class="opp-box-text">Enter materials + labor rate → auto-calculate true per-item COGS → show Etsy-fee-adjusted net profit per listing → flag unprofitable listings in red → inventory auto-deducts on sale. At $15/mo — $9 less than Craftybase Pro with simpler UX and auto-COGS at entry level — this directly undercuts the dominant player's most criticized decision. The waterfall of Etsy listing fee (6.5%) + payment processing (~3.25%) + offsite ads (12–15%) + shipping materials is invisible to most sellers without a tool. One saved bad listing covers months of subscription.</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     NICHE 2 — PRIVATE TUTORS
+═══════════════════════════════════════ -->
+<section class="niche-section" id="tutors">
+  <div class="niche-hero">
+    <div class="niche-num">Niche 02 / 05</div>
+    <div class="niche-title">Independent Private Tutors</div>
+    <div class="niche-sub">An admin tool that eliminates 6 hours/week of payment chasing, scheduling back-and-forth, and student tracking — built for solo tutors, not agencies.</div>
+  </div>
+  <div class="niche-body">
+
+    <div class="two-col">
+      <div class="col-block">
+        <div class="col-title">Market Size (Sources: BLS 2024, Grand View Research)</div>
+        <div class="market-stat"><span class="ms-label">BLS employed tutors</span><span class="ms-value">215,500</span></div>
+        <div class="market-stat"><span class="ms-label">Total incl. self-employed (est.)</span><span class="ms-value highlight">300,000–500,000</span></div>
+        <div class="market-stat"><span class="ms-label">US online tutoring market (2024)</span><span class="ms-value">$4.32 billion</span></div>
+        <div class="market-stat"><span class="ms-label">Market CAGR to 2030</span><span class="ms-value">11.1%</span></div>
+        <div class="market-stat"><span class="ms-label">US total tutoring market (2022)</span><span class="ms-value">$8.36 billion</span></div>
+        <div class="market-stat"><span class="ms-label">Median hourly rate</span><span class="ms-value">$25–40/hr</span></div>
+        <div class="market-stat"><span class="ms-label">Admin hours lost per week (survey)</span><span class="ms-value highlight">~6 hours</span></div>
+        <div class="market-stat"><span class="ms-label">Freelance invoices paid late (FreeAgent)</span><span class="ms-value">29%</span></div>
+      </div>
+
+      <div class="col-block">
+        <div class="col-title">Pain Evidence (Mumsnet Forum / Industry)</div>
+        <div class="quote-block">
+          <div class="quote-text">"I find it sneaky and in effect theft... the parent who 'hasn't brought the cash' with them, and 'why can't I pay by bank transfer?' I allowed bank transfers in the past but they became later and later paid."</div>
+          <div class="quote-source">TeaAddict235 — Mumsnet tutoring forum (non-payment thread, verified)</div>
+        </div>
+        <div class="quote-block">
+          <div class="quote-text">"I didn't start charging for missed sessions until about 4 years ago, realizing that students and parents will take advantage otherwise."</div>
+          <div class="quote-source">Tutor with 20+ years experience — Violinist.com community</div>
+        </div>
+        <div class="quote-block">
+          <div class="quote-text">"Tutors lose an average of six paid hours each week to tasks as simple as confirming availability or chasing late arrivals."</div>
+          <div class="quote-source">Doodle 2024 survey of private instructors</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider-label">Revenue Model @ $19/mo</div>
+    <div class="mrr-row"><span class="mrr-pct">0.1%</span><div class="mrr-bar-wrap"><div class="mrr-bar" style="width:10%"></div></div><span class="mrr-val">$5,700/mo</span></div>
+    <div class="mrr-row"><span class="mrr-pct">0.5%</span><div class="mrr-bar-wrap"><div class="mrr-bar" style="width:50%"></div></div><span class="mrr-val">$28,500/mo</span></div>
+    <div class="mrr-row"><span class="mrr-pct">1.0%</span><div class="mrr-bar-wrap"><div class="mrr-bar" style="width:100%"></div></div><span class="mrr-val">$57,000/mo</span></div>
+
+    <div class="divider-label" style="margin-top:32px;">Competitor Analysis</div>
+    <div class="comp-table-wrap">
+      <table>
+        <thead>
+          <tr><th>Tool</th><th>Exact Pricing</th><th>Rating</th><th>Critical Complaints</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="t-name">TutorBird</span><br><span style="font-size:10px;color:var(--text3);">Market leader for solos</span></td>
+            <td><span class="t-price">$14.95/mo base<br>+$4.95/mo per extra tutor<br>30-day free trial</span></td>
+            <td><span class="t-rating"><span class="stars">★★★★★</span><br><span class="review-count">4.8/5 · 264 reviews (Capterra)</span></span></td>
+            <td><span class="t-pain"><em>"No dedicated mobile app — mobile experience functional but not optimized."</em><br><em>"No built-in video conferencing."</em><br><em>"Reporting functions limited — wish it had profit and loss for tax time."</em><br>No undo on schedule edits.</span></td>
+          </tr>
+          <tr>
+            <td><span class="t-name">TutorCruncher</span><br><span style="font-size:10px;color:var(--text3);">Agency-focused, UK-based</span></td>
+            <td><span class="t-price">Pay-as-you-go: £25/mo (~$32)<br>Startup: £60/mo (~$77)<br>Enterprise: £200/mo (~$257)<br>Processing: 2.65–2.3%</span></td>
+            <td><span class="t-rating"><span class="stars">★★★★</span>✩<br><span class="review-count">4.6/5 · 246 reviews (Capterra)</span></span></td>
+            <td><span class="t-pain"><em>"Fees and Stripe Split payments very expensive — tutors wait 7 working days to get paid."</em><br><em>"Still expensive to use and not the most user friendly."</em><br>No ACH bank transfers for US clients.</span></td>
+          </tr>
+          <tr>
+            <td><span class="t-name">Teachworks</span><br><span style="font-size:10px;color:var(--text3);">For schools/centers</span></td>
+            <td><span class="t-price">Starter: $17/mo + $0.29/lesson<br>Premium: $188/mo + $0.059/lesson</span></td>
+            <td><span class="t-rating"><span class="stars">★★★★</span>✩<br><span class="review-count">4.6/5 · 64 reviews (Capterra)</span></span></td>
+            <td><span class="t-pain"><em>"Lacks two-way sync to Google Calendar — people have been asking for this for a long time."</em><br>Per-lesson pricing creates unpredictable monthly bills.</span></td>
+          </tr>
+          <tr>
+            <td><span class="t-name">Acuity Scheduling</span><br><span style="font-size:10px;color:var(--text3);">General booking, not tutor-specific</span></td>
+            <td><span class="t-price">Emerging: $20/mo<br>Growing: $34/mo<br>Powerhouse: $61/mo</span></td>
+            <td><span class="t-rating"><span class="stars">★★★</span>✩✩<br><span class="review-count">37% feel negative about value for money</span></span></td>
+            <td><span class="t-pain">No invoicing, no student records, no lesson notes — handles booking only. Feature regressions since Squarespace acquisition.</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="opp-box" style="margin-top:24px;">
+      <div class="opp-box-title">The Product Opportunity</div>
+      <div class="opp-box-text">The gap between TutorBird (simple, beloved, missing mobile/video/P&L) and TutorCruncher (powerful, expensive, complex) is where the product lives. Core: parent-facing booking link + automated payment reminders + Stripe collection + per-student session log + cancellation policy enforcement with deposit hold. Tutors going independent from Varsity Tutors and Wyzant represent a constant inflow of new customers who need tools immediately — a built-in acquisition channel. Value prop: "stop losing 6 hours a week and chasing parents for money."</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     NICHE 3 — DOG GROOMERS
+═══════════════════════════════════════ -->
+<section class="niche-section" id="groomers">
+  <div class="niche-hero">
+    <div class="niche-num">Niche 03 / 05</div>
+    <div class="niche-title">Dog Groomers — Solo & Small Shops</div>
+    <div class="niche-sub">Online booking + automated reminders + digital pet health cards + card-on-file payment. Replace the paper appointment book and index card box system used by ~80% of solo grooming operations.</div>
+  </div>
+  <div class="niche-body">
+
+    <div class="two-col">
+      <div class="col-block">
+        <div class="col-title">Market Size (Sources: IBISWorld, Grand View Research)</div>
+        <div class="market-stat"><span class="ms-label">US grooming & boarding establishments (2024)</span><span class="ms-value highlight">162,802</span></div>
+        <div class="market-stat"><span class="ms-label">Projected establishments (2026)</span><span class="ms-value">193,181</span></div>
+        <div class="market-stat"><span class="ms-label">Annual business growth rate</span><span class="ms-value">4.3–4.6%</span></div>
+        <div class="market-stat"><span class="ms-label">Grooming-only market revenue (2024)</span><span class="ms-value">$2.06 billion</span></div>
+        <div class="market-stat"><span class="ms-label">Grooming market CAGR (2025–2030)</span><span class="ms-value">6.7%</span></div>
+        <div class="market-stat"><span class="ms-label">Market concentration</span><span class="ms-value">Fragmented — no player >5%</span></div>
+        <div class="market-stat"><span class="ms-label">Solo/small shop estimate (~80%+)</span><span class="ms-value">~130,000+</span></div>
+        <div class="market-stat"><span class="ms-label">No-show rate industry standard</span><span class="ms-value highlight">5–15%</span></div>
+      </div>
+
+      <div class="col-block">
+        <div class="col-title">Pain Evidence (Capterra Reviews / Forums)</div>
+        <div class="quote-block">
+          <div class="quote-text">"New private equity owners decided to back out of our contract and tripled our monthly price overnight without telling us first. The day after taking over, I was hit with an unexpected $2,000 'gateway fee' on my credit card."</div>
+          <div class="quote-source">Gingr — Capterra verified review (2024)</div>
+        </div>
+        <div class="quote-block">
+          <div class="quote-text">"This software is owned by a venture capital firm. They don't care about the software or service and are very arrogant. For how much Gingr costs per month, I can't believe I can't talk to a customer service rep!"</div>
+          <div class="quote-source">Gingr — Capterra verified review</div>
+        </div>
+        <div class="quote-block">
+          <div class="quote-text">"The only problem is Groomsoft doesn't have online booking."</div>
+          <div class="quote-source">Groomsoft — Capterra reviews (dominant complaint)</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider-label">Revenue Model @ $49/mo</div>
+    <div class="mrr-row"><span class="mrr-pct">0.1%</span><div class="mrr-bar-wrap"><div class="mrr-bar" style="width:10%"></div></div><span class="mrr-val">$6,860/mo</span></div>
+    <div class="mrr-row"><span class="mrr-pct">0.5%</span><div class="mrr-bar-wrap"><div class="mrr-bar" style="width:50%"></div></div><span class="mrr-val">$34,300/mo</span></div>
+    <div class="mrr-row"><span class="mrr-pct">1.0%</span><div class="mrr-bar-wrap"><div class="mrr-bar" style="width:100%"></div></div><span class="mrr-val">$68,600/mo</span></div>
+
+    <div class="divider-label" style="margin-top:32px;">Competitor Analysis</div>
+    <div class="comp-table-wrap">
+      <table>
+        <thead>
+          <tr><th>Tool</th><th>Exact Pricing</th><th>Rating</th><th>Critical Complaints</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="t-name">MoeGo</span><br><span style="font-size:10px;color:var(--text3);">Market leader (satisfaction)</span></td>
+            <td><span class="t-price">Basic: $49/mo/van<br>Growth: $99/mo/van<br>Ultimate: $159/mo/van<br>Note: "per van" pricing</span></td>
+            <td><span class="t-rating"><span class="stars">★★★★★</span><br><span class="review-count">4.9/5 · 229 reviews (Capterra) · 103 (G2)</span></span></td>
+            <td><span class="t-pain"><em>"App doesn't always load fast when they don't have full phone reception."</em><br><em>"Cost per text adds up quickly."</em><br>Multi-van operations pay $98–318/mo.</span></td>
+          </tr>
+          <tr>
+            <td><span class="t-name">Gingr</span><br><span style="font-size:10px;color:var(--text3);">VC-backed, price controversy</span></td>
+            <td><span class="t-price">Spa/Groomer: $105/mo<br>Daycare: $145/mo<br>Boarding: $155/mo<br>Enterprise: contact sales</span></td>
+            <td><span class="t-rating"><span class="stars">★★★★</span>✩ Capterra (177)<br><span class="review-count" style="color:var(--red);">G2: 3.8/5 · 15 reviews</span></span></td>
+            <td><span class="t-pain"><em>"Tripled price overnight without notice."</em><br><em>"So many bugs with booking, messaging and most importantly, payment processing."</em><br><em>"$2,000 'gateway fee' charged the day after acquisition."</em></span></td>
+          </tr>
+          <tr>
+            <td><span class="t-name">DaySmart Pet</span><br><span style="font-size:10px;color:var(--text3);">Legacy tool, declining quality</span></td>
+            <td><span class="t-price">Starter: $29/mo<br>Deluxe: $59/mo<br>Premier: $99/mo<br>Up to ~$199/mo</span></td>
+            <td><span class="t-rating"><span class="stars">★★★★</span>✩<br><span class="review-count">~4.3/5 · 150+ reviews (Capterra)</span></span></td>
+            <td><span class="t-pain"><em>"I loved DaySmart from 2013 to 2023. Then they changed support to AI."</em><br><em>"After 10 years — continuous glitches, software often not working."</em><br><em>"Too many clicks to perform a simple task."</em></span></td>
+          </tr>
+          <tr>
+            <td><span class="t-name">Groomsoft</span><br><span style="font-size:10px;color:var(--text3);">Cheap but missing key feature</span></td>
+            <td><span class="t-price">Shops: $24.90/mo<br>Mobile: $34.90/mo<br>Free trial available</span></td>
+            <td><span class="t-rating"><span class="stars">★★★★★</span><br><span class="review-count">4.8/5 · 36 reviews (Capterra)</span></span></td>
+            <td><span class="t-pain"><em>"The only problem is Groomsoft doesn't have online booking"</em> — this appears in multiple reviews as the single dominant complaint. Loved but fatally limited.</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="opp-box" style="margin-top:24px;">
+      <div class="opp-box-title">The Product Opportunity</div>
+      <div class="opp-box-text">Groomsoft has no online booking (fatal gap). Gingr tripled prices and has a 3.8/5 on G2 — actively losing customers. DaySmart switched to AI support after a decade and is in decline. MoeGo is genuinely good but "per van" pricing is expensive for solo operations. A $39–49/month flat-rate tool with: online booking widget + digital pet profile cards (coat type, behavioral notes, vaccine uploads) + automated SMS reminder 48hrs before + card-on-file for no-show fee enforcement is a direct, winnable wedge. SMS reminders alone reduce no-shows by 50% — at 10 appointments/week at $60 average, a 10% no-show rate is $312/month in lost revenue. The tool pays for itself 6x over on day one.</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     NICHE 4 — SMALL LANDLORDS
+═══════════════════════════════════════ -->
+<section class="niche-section" id="landlords">
+  <div class="niche-hero">
+    <div class="niche-num">Niche 04 / 05</div>
+    <div class="niche-title">Small Landlords (1–10 Units)</div>
+    <div class="niche-sub">A simple dashboard for rent collection with automated reminders, maintenance request log, lease storage, and P&L export for taxes — flat pricing per landlord, not per unit.</div>
+  </div>
+  <div class="niche-body">
+
+    <div class="two-col">
+      <div class="col-block">
+        <div class="col-title">Market Size (Sources: IRS, HUD, iPropertyManagement)</div>
+        <div class="market-stat"><span class="ms-label">Total US tax-filing landlords</span><span class="ms-value highlight">9.72 million</span></div>
+        <div class="market-stat"><span class="ms-label">Landlords owning 1–4 units (~75%)</span><span class="ms-value highlight">~7.3 million</span></div>
+        <div class="market-stat"><span class="ms-label">Landlords owning 1 unit only</span><span class="ms-value">42%</span></div>
+        <div class="market-stat"><span class="ms-label">Average landlord portfolio</span><span class="ms-value">1.38 properties / 1.89 units</span></div>
+        <div class="market-stat"><span class="ms-label">Still using manual/spreadsheet methods</span><span class="ms-value highlight">~20% = 1.9 million</span></div>
+        <div class="market-stat"><span class="ms-label">Total US rent collected (2024)</span><span class="ms-value">$428 billion</span></div>
+        <div class="market-stat"><span class="ms-label">Software TAM estimate (est.)</span><span class="ms-value">$612M–$1.2B/yr</span></div>
+      </div>
+
+      <div class="col-block">
+        <div class="col-title">Pain Evidence (BiggerPockets Forums, verified)</div>
+        <div class="quote-block">
+          <div class="quote-text">"Most investors don't need software until they have 5-10 rentals. All you need is a single place to track tenant information, payment history, maintenance, and a few other things. You can easily do this on a spreadsheet."</div>
+          <div class="quote-source">Nathan Gesner — most-upvoted reply, BiggerPockets forum "Best Landlord Software 2023"</div>
+        </div>
+        <div class="quote-block">
+          <div class="quote-text">"Most of it was overkill for me. I just needed rent collection, lease signing, and maintenance tracking. If you buy it for one year they still add two to three price increases per year."</div>
+          <div class="quote-source">Buildium — Capterra verified review</div>
+        </div>
+        <p style="font-size:12px; color:var(--text2); margin-top:10px;">Etsy currently sells "small landlord spreadsheet trackers" for 1–5 properties — the clearest possible unmet-demand signal. AppFolio hard-requires 50 units minimum, explicitly blocking the entire small landlord segment.</p>
+      </div>
+    </div>
+
+    <div class="divider-label">Revenue Model @ $15/mo</div>
+    <div class="mrr-row"><span class="mrr-pct">0.1%</span><div class="mrr-bar-wrap"><div class="mrr-bar" style="width:10%"></div></div><span class="mrr-val">$127,500/mo</span></div>
+    <div class="mrr-row"><span class="mrr-pct">0.5%</span><div class="mrr-bar-wrap"><div class="mrr-bar" style="width:50%"></div></div><span class="mrr-val">$637,500/mo</span></div>
+    <div class="mrr-row"><span class="mrr-pct">1.0%</span><div class="mrr-bar-wrap"><div class="mrr-bar" style="width:100%"></div></div><span class="mrr-val">$1,275,000/mo</span></div>
+
+    <div class="divider-label" style="margin-top:32px;">Competitor Analysis</div>
+    <div class="comp-table-wrap">
+      <table>
+        <thead>
+          <tr><th>Tool</th><th>Exact Pricing</th><th>Rating</th><th>Critical Complaints</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="t-name">TurboTenant</span><br><span style="font-size:10px;color:var(--text3);">Free model, most popular</span></td>
+            <td><span class="t-price">Free: $0 (unlimited properties)<br>Essentials: $12.42/mo (annual)<br>Pro: $16.58/mo (annual)<br>Flat rate regardless of door count</span></td>
+            <td><span class="t-rating"><span class="stars">★★★★</span>✩<br><span class="review-count">4.5/5 · 103 reviews (Capterra)</span></span></td>
+            <td><span class="t-pain"><em>"Lacks 1099 reports and customer portals."</em><br><em>"Flaky software prevented a tenant from paying rent for 10 days."</em><br>Limited accounting, basic maintenance tracking.</span></td>
+          </tr>
+          <tr>
+            <td><span class="t-name">Landlord Studio</span><br><span style="font-size:10px;color:var(--text3);">Highest Capterra rating</span></td>
+            <td><span class="t-price">Go: Free (3 units)<br>Pro: $12/mo (3 units + $1/extra)<br>Pro Plus: $28/mo (unlimited docs)</span></td>
+            <td><span class="t-rating"><span class="stars">★★★★★</span><br><span class="review-count">4.9/5 · 144 reviews (Capterra)</span></span></td>
+            <td><span class="t-pain">Free plan caps at 3 units. Per-unit pricing adds up for mid-size portfolios. Some users want US-specific lease templates.</span></td>
+          </tr>
+          <tr>
+            <td><span class="t-name">Buildium</span><br><span style="font-size:10px;color:var(--text3);">Most reviews, most complained about</span></td>
+            <td><span class="t-price">Essential: $55–62/mo<br>Growth: ~$174/mo<br>Premium: higher tiers</span></td>
+            <td><span class="t-rating"><span class="stars">★★★★</span>✩<br><span class="review-count">4.5/5 · 2,148 reviews (Capterra) — largest base</span></span></td>
+            <td><span class="t-pain"><em>"Overkill — I just needed rent collection, lease signing, and maintenance."</em><br><em>"Still add 2–3 price increases per year even on annual plan."</em><br><em>"Support confirmed $337.50, then changed price to $400 'for existing customers.'"</em></span></td>
+          </tr>
+          <tr>
+            <td><span class="t-name">AppFolio</span><br><span style="font-size:10px;color:var(--text3);">Enterprise — hard blocks small landlords</span></td>
+            <td><span class="t-price">Core: $1.49/unit/mo<br>Min 50 units = $298/mo minimum<br>Plus: $3/unit · Max: $5/unit</span></td>
+            <td><span class="t-rating"><span class="stars">★★★★</span>✩<br><span class="review-count">4.5/5 · large base</span></span></td>
+            <td><span class="t-pain"><em>"AppFolio is not a good fit for smaller companies with fewer than 50 units."</em><br>Explicitly requires 50-unit minimum. The entire small landlord segment is structurally excluded.</span></td>
+          </tr>
+          <tr>
+            <td><span class="t-name">Baselane</span><br><span style="font-size:10px;color:var(--text3);">Banking-first approach</span></td>
+            <td><span class="t-price">Core: Free (with Baselane bank)<br>Smart: $20/mo (AI categorization)<br>ACH rent: $2/transaction</span></td>
+            <td><span class="t-rating"><span class="stars">★★★★★</span><br><span class="review-count">4.8/5 · 17 reviews (very early stage)</span></span></td>
+            <td><span class="t-pain">Banking-first approach feels incomplete as a property management tool. Very few reviews — limited awareness.</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="opp-box" style="margin-top:24px;">
+      <div class="opp-box-title">The Product Opportunity</div>
+      <div class="opp-box-text">1.9 million landlords are confirmed on spreadsheets (RentRedi 2025 survey). AppFolio structurally blocks anyone under 50 units. Buildium users are vocal about surprise price hikes. TurboTenant is free but missing accounting features (no 1099s, weak maintenance). The opportunity: a fixed-price ($15–20/month) dashboard for 1–10 units covering: online rent collection with automated late reminders + maintenance request log + lease and document storage + income/expense ledger with Schedule E export for tax season. Per-landlord not per-unit pricing is the key differentiator that wins the conversation immediately.</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     NICHE 5 — HOUSE CLEANING
+═══════════════════════════════════════ -->
+<section class="niche-section" id="cleaning">
+  <div class="niche-hero">
+    <div class="niche-num">Niche 05 / 05</div>
+    <div class="niche-title">House Cleaning Businesses (1–10 Staff)</div>
+    <div class="niche-sub">Flat-rate scheduling + crew SMS dispatch + time tracking + automated invoicing. The category leader (ZenMaid) has captured only 0.28% of the market after 11 years — 99.7% is still unserved.</div>
+  </div>
+  <div class="niche-body">
+
+    <div class="two-col">
+      <div class="col-block">
+        <div class="col-title">Market Size (Source: IBISWorld 2024)</div>
+        <div class="market-stat"><span class="ms-label">US residential cleaning businesses</span><span class="ms-value highlight">356,516</span></div>
+        <div class="market-stat"><span class="ms-label">Target segment (1–10 employees, ~90%)</span><span class="ms-value highlight">~320,000</span></div>
+        <div class="market-stat"><span class="ms-label">Market revenue (2024)</span><span class="ms-value">$18.8 billion</span></div>
+        <div class="market-stat"><span class="ms-label">YoY growth</span><span class="ms-value">1.23%</span></div>
+        <div class="market-stat"><span class="ms-label">Cleaning SaaS market (global, 2025)</span><span class="ms-value">$1.96 billion</span></div>
+        <div class="market-stat"><span class="ms-label">Cleaning SaaS CAGR (to 2030)</span><span class="ms-value">8.5%</span></div>
+        <div class="market-stat"><span class="ms-label">ZenMaid customers after 11 years</span><span class="ms-value highlight">~1,000 (0.28% of market)</span></div>
+        <div class="market-stat"><span class="ms-label">ZenMaid ARR (GetLatka, 2024)</span><span class="ms-value">$2.6 million</span></div>
+      </div>
+
+      <div class="col-block">
+        <div class="col-title">Pain Evidence (Review Aggregates / Industry)</div>
+        <div class="quote-block">
+          <div class="quote-text">"Scheduling mistakes cost cleaning businesses $10,000–$21,000/year."</div>
+          <div class="quote-source">ZenMaid blog — citing customer research</div>
+        </div>
+        <div class="quote-block">
+          <div class="quote-text">"Most cleaning-specific software works great until you hit 8–10 employees, then you need advanced features they don't have. Field service software has those features but wasn't built for cleaning — you're paying for quotes and parts inventory you'll never use."</div>
+          <div class="quote-source">BuildBite analysis of grooming software forum discussions</div>
+        </div>
+        <div class="quote-block">
+          <div class="quote-text">"ZenMaid's pricing may be too high for small or growing cleaning businesses. The mobile experience may not be smooth. Many users need more advanced reporting and analytics features."</div>
+          <div class="quote-source">GetCleanly.net — aggregated ZenMaid user reviews</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider-label">Revenue Model @ $79/mo</div>
+    <div class="mrr-row"><span class="mrr-pct">0.1%</span><div class="mrr-bar-wrap"><div class="mrr-bar" style="width:10%"></div></div><span class="mrr-val">$25,359/mo</span></div>
+    <div class="mrr-row"><span class="mrr-pct">0.5%</span><div class="mrr-bar-wrap"><div class="mrr-bar" style="width:50%"></div></div><span class="mrr-val">$126,716/mo</span></div>
+    <div class="mrr-row"><span class="mrr-pct">1.0%</span><div class="mrr-bar-wrap"><div class="mrr-bar" style="width:100%"></div></div><span class="mrr-val">$253,511/mo</span></div>
+    <p style="font-family:var(--mono);font-size:10px;color:var(--text3);margin-top:8px;">ZenMaid's actual ARPU: $216/mo — cleaning businesses pay more than average SaaS. Recalculated at $216: 0.5% = $346K MRR.</p>
+
+    <div class="divider-label" style="margin-top:32px;">Competitor Analysis</div>
+    <div class="comp-table-wrap">
+      <table>
+        <thead>
+          <tr><th>Tool</th><th>Exact Pricing</th><th>Rating</th><th>Critical Complaints</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="t-name">ZenMaid</span><br><span style="font-size:10px;color:var(--text3);">Category leader, cleaning-specific</span></td>
+            <td><span class="t-price">Lite: $19 + $4/cleaner<br>Essentials: $39 + $14/cleaner<br>MAX: $49 + $24/cleaner<br>5-cleaner team = $109/mo+SMS</span></td>
+            <td><span class="t-rating"><span class="stars">★★★★</span>✩ Capterra · G2: 4.7/5<br><span class="review-count">196 reviews · Google Play: 3.2/5</span></span></td>
+            <td><span class="t-pain"><em>"Pricing too high for small or growing businesses."</em><br><em>"No standalone time clock — can only clock in on published appointments."</em><br>No payroll integration. No bilingual support. Workers can't swap shifts. Mobile app: 3.2/5 on Google Play.</span></td>
+          </tr>
+          <tr>
+            <td><span class="t-name">Jobber</span><br><span style="font-size:10px;color:var(--text3);">Field service, not cleaning-specific</span></td>
+            <td><span class="t-price">Core: $69/mo (1 user)<br>Connect: $169/mo (5 users)<br>Grow: $349/mo (10 users)<br>+$29/user/mo additional</span></td>
+            <td><span class="t-rating"><span class="stars">★★★★</span>✩<br><span class="review-count">4.6/5 · 478 reviews (G2) · 1,420 (Capterra)</span></span></td>
+            <td><span class="t-pain"><em>"Once we hit 8 employees, the per-user cost became absurd."</em><br><em>"QuickBooks sync: ~2% of line items drop during sync."</em><br>No room-by-room checklists. No supply tracking. Raised $191M VC — pricing pressure increasing.</span></td>
+          </tr>
+          <tr>
+            <td><span class="t-name">Housecall Pro</span><br><span style="font-size:10px;color:var(--text3);">Largest review base</span></td>
+            <td><span class="t-price">Basic: $79/mo (1 user)<br>Essentials: $189/mo (1–5 users)<br>MAX: $329/mo (up to 8)</span></td>
+            <td><span class="t-rating"><span class="stars">★★★★</span>✩ Capterra (2,784)<br><span class="review-count" style="color:var(--red);">Trustpilot: 3.2/5 from 550 reviews</span></span></td>
+            <td><span class="t-pain"><em>"WHY would I want the additional charges!?"</em> (BBB complaint)<br><em>"Switched to AI-only support in 2025 — critical features break without warning."</em><br>Add-ons cost $20–$149/mo each. Manual invoicing "tedious."</span></td>
+          </tr>
+          <tr>
+            <td><span class="t-name">BookingKoala</span><br><span style="font-size:10px;color:var(--text3);">Cleaning-specific booking</span></td>
+            <td><span class="t-price">Free tier<br>Growing: ~$27/mo<br>Premium: ~$197/mo</span></td>
+            <td><span class="t-rating"><span class="stars">★★★★★</span><br><span class="review-count">5.0/5 · 41 reviews (small sample)</span></span></td>
+            <td><span class="t-pain"><em>"System is lackluster, unadaptable and simply missing dozens of important features."</em><br><em>"Very time consuming and difficult for the average person to figure out."</em></span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Gap analysis -->
+    <div class="divider-label" style="margin-top:32px;">Validated Feature Gaps (Not Solved by Any Tool)</div>
+    <div style="display:grid; grid-template-columns: repeat(4,1fr); gap:1px; background:var(--border); border:1px solid var(--border); margin-bottom:24px;">
+      <div style="background:var(--bg2); padding:16px 18px;">
+        <div style="font-family:var(--mono);font-size:9px;color:var(--amber);letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px;">Flat-rate pricing</div>
+        <div style="font-size:12px;color:var(--text2);">ZenMaid's per-cleaner model means 5-person teams pay $109+/mo. Nobody offers flat-rate for unlimited cleaners under $100.</div>
+      </div>
+      <div style="background:var(--bg2); padding:16px 18px;">
+        <div style="font-family:var(--mono);font-size:9px;color:var(--amber);letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px;">Mobile-first crew app</div>
+        <div style="font-size:12px;color:var(--text2);">ZenMaid Google Play: 3.2/5. Crews use phones, not desktops. No tool has a genuinely good crew-facing mobile experience.</div>
+      </div>
+      <div style="background:var(--bg2); padding:16px 18px;">
+        <div style="font-family:var(--mono);font-size:9px;color:var(--amber);letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px;">Bilingual support</div>
+        <div style="font-size:12px;color:var(--text2);">Cleaning crews are predominantly Spanish-speaking. ZenMaid has no Spanish language support. No competitor addresses this.</div>
+      </div>
+      <div style="background:var(--bg2); padding:16px 18px;">
+        <div style="font-family:var(--mono);font-size:9px;color:var(--amber);letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px;">Standalone time clock</div>
+        <div style="font-size:12px;color:var(--text2);">ZenMaid only allows clock-in on published appointments. Cleaners can't clock in/out independently. No clean payroll data output.</div>
+      </div>
+    </div>
+
+    <div class="opp-box">
+      <div class="opp-box-title">The Product Opportunity</div>
+      <div class="opp-box-text">ZenMaid captured 1,000 customers in 11 years at $216/mo ARPU — that's $2.6M ARR from 0.28% of the market. A flat-rate ($49–79/mo, unlimited cleaners) mobile-first alternative with a 4.5+ rated crew app in English and Spanish, standalone time clock, and basic payroll export would have a structural pricing advantage and address the top feature gaps simultaneously. Scheduling mistakes cost operators $10,000–21,000/year — the product pays for itself in prevented double-bookings in the first month. The category is proven, the TAM is massive, and the leader has barely scratched the surface.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-l">Sources: Etsy Inc. 10-K (Q4 2024) · IBISWorld · BLS OOH 2024 · HUD · iPropertyManagement · Grand View Research · RentRedi Survey 2025 · GetLatka · Capterra · G2 · BiggerPockets Forums · Mumsnet</div>
+  <div class="footer-l">5 niches · Non-tech audience · Cannot build it themselves · March 2026</div>
+</footer>
+
+<script>
+// Highlight active nav section on scroll
+const sections = ['top','overview','etsy','tutors','groomers','landlords','cleaning'];
+const links = document.querySelectorAll('.nav-link');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(id => {
+    const el = document.getElementById(id);
+    if (el && el.getBoundingClientRect().top < 100) current = id === 'top' ? 'overview' : id;
+  });
+  links.forEach(l => {
+    l.classList.toggle('active', l.getAttribute('href') === '#' + current);
+  });
+});
+
+// Animate MRR bars on scroll into view
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.querySelectorAll('.mrr-bar').forEach(bar => {
+        bar.style.width = bar.style.width; // trigger reflow
+      });
+    }
+  });
+}, { threshold: 0.3 });
+document.querySelectorAll('.niche-body').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

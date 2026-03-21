@@ -1,0 +1,6 @@
+[2026-03-20T16:22:00.123Z] GET http://localhost:7823/niche-opportunities.html → 200 (14ms, 50707B)
+[2026-03-20T16:22:00.149Z] GET https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap → 200 (141ms, 18457B)
+[2026-03-20T16:22:00.406Z] GET https://fonts.gstatic.com/s/ibmplexmono/v20/-F63fjptAgt5VM-kVkqdyU8n1i8q131nj-o.woff2 → 200 (119ms, 10052B)
+[2026-03-20T16:22:00.406Z] GET https://fonts.gstatic.com/s/playfairdisplay/v40/nuFiD-vYSZviVYUb_rj3ij__anPXDTzYgEM86xQ.woff2 → 200 (122ms, 38460B)
+[2026-03-20T16:22:00.406Z] GET https://fonts.gstatic.com/s/ibmplexsans/v23/zYXzKVElMYYaJe8bpLHnCwDKr932-G7dytD-Dmu1syxeKYbSB4Zh.woff2 → 200 (122ms, 40240B)
+[2026-03-20T16:22:00.406Z] GET https://fonts.gstatic.com/s/ibmplexmono/v20/-F6qfjptAgt5VM-kVkqdyU8n3twJwlBFgsAXHNk.woff2 → 200 (120ms, 10060B)

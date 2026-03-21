@@ -1,0 +1,2 @@
+[     234ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://www.personio.com/about-personio/career/open-positions/:0
+[     712ms] [ERROR] Datadog Browser SDK: Client Token is not configured, we will not send any data. @ https://www.datadoghq-browser-agent.com/eu1/v6/datadog-rum-slim.js:0

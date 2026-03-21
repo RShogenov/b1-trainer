@@ -1,0 +1,1227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Music Teacher Software — Market Opportunity Report</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0c0a09;
+    --paper: #faf7f2;
+    --amber: #d97706;
+    --amber-light: #fbbf24;
+    --amber-pale: #fef3c7;
+    --red: #dc2626;
+    --red-pale: #fee2e2;
+    --green: #16a34a;
+    --green-pale: #dcfce7;
+    --blue: #1d4ed8;
+    --blue-pale: #dbeafe;
+    --muted: #78716c;
+    --border: #e7e0d6;
+    --card: #ffffff;
+    --section-bg: #f5f0e8;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Instrument Sans', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  /* ─── COVER ─────────────────────────────────────────────── */
+  .cover {
+    background: var(--ink);
+    color: var(--paper);
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: 1fr auto;
+    padding: 64px;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: -120px; right: -120px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, #d9770620 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .cover::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: 40px;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, #d9770610 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .cover-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 48px;
+  }
+
+  .cover-body { max-width: 760px; }
+
+  .cover-tag {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--amber);
+    border: 1px solid var(--amber);
+    padding: 4px 10px;
+    border-radius: 2px;
+    margin-bottom: 28px;
+  }
+
+  .cover h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(44px, 7vw, 80px);
+    line-height: 1.0;
+    color: #fff;
+    margin-bottom: 12px;
+  }
+  .cover h1 em {
+    color: var(--amber-light);
+    font-style: italic;
+  }
+
+  .cover-sub {
+    font-size: 18px;
+    color: #a8a29e;
+    max-width: 540px;
+    margin-top: 20px;
+    line-height: 1.5;
+  }
+
+  .cover-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border-top: 1px solid #2c2826;
+    margin-top: 64px;
+    padding-top: 40px;
+  }
+  .cover-stat {
+    padding-right: 32px;
+    border-right: 1px solid #2c2826;
+    margin-right: 32px;
+  }
+  .cover-stat:last-child { border-right: none; }
+  .cover-stat-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 42px;
+    color: #fff;
+    line-height: 1;
+  }
+  .cover-stat-num span {
+    font-size: 22px;
+    color: var(--amber-light);
+    vertical-align: super;
+  }
+  .cover-stat-label {
+    font-size: 12px;
+    color: #78716c;
+    margin-top: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .cover-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: #44403c;
+  }
+
+  /* ─── LAYOUT ─────────────────────────────────────────────── */
+  .page { max-width: 1100px; margin: 0 auto; padding: 80px 48px; }
+  .page + .page { padding-top: 0; }
+
+  .section { margin-bottom: 72px; }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 32px;
+    border-bottom: 2px solid var(--ink);
+    padding-bottom: 12px;
+  }
+  .section-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--amber);
+    letter-spacing: 0.1em;
+  }
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 28px;
+    line-height: 1;
+  }
+
+  /* ─── CARDS ─────────────────────────────────────────────── */
+  .card-grid { display: grid; gap: 16px; }
+  .card-grid-2 { grid-template-columns: repeat(2, 1fr); }
+  .card-grid-3 { grid-template-columns: repeat(3, 1fr); }
+  .card-grid-4 { grid-template-columns: repeat(4, 1fr); }
+
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 24px;
+  }
+  .card-amber { background: var(--amber-pale); border-color: #fcd34d; }
+  .card-red { background: var(--red-pale); border-color: #fca5a5; }
+  .card-green { background: var(--green-pale); border-color: #86efac; }
+  .card-dark { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+
+  .card-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+  .card-dark .card-label { color: #78716c; }
+  .card-amber .card-label { color: #92400e; }
+  .card-red .card-label { color: #991b1b; }
+  .card-green .card-label { color: #15803d; }
+
+  .card-value {
+    font-family: 'DM Serif Display', serif;
+    font-size: 36px;
+    line-height: 1;
+    color: var(--ink);
+  }
+  .card-dark .card-value { color: #fff; }
+  .card-amber .card-value { color: #92400e; }
+  .card-red .card-value { color: var(--red); }
+  .card-green .card-value { color: var(--green); }
+
+  .card-desc {
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 6px;
+    line-height: 1.4;
+  }
+  .card-dark .card-desc { color: #a8a29e; }
+  .card-amber .card-desc { color: #78350f; }
+  .card-red .card-desc { color: #7f1d1d; }
+  .card-green .card-desc { color: #14532d; }
+
+  /* ─── QUOTE BLOCKS ─────────────────────────────────────────── */
+  .quotes { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+
+  .quote {
+    background: var(--section-bg);
+    border-left: 3px solid var(--amber);
+    padding: 20px 24px;
+    border-radius: 0 4px 4px 0;
+  }
+  .quote-text {
+    font-family: 'DM Serif Display', serif;
+    font-style: italic;
+    font-size: 15px;
+    line-height: 1.55;
+    color: var(--ink);
+    margin-bottom: 10px;
+  }
+  .quote-source {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* ─── TABLE ─────────────────────────────────────────────── */
+  .table-wrap { overflow-x: auto; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13.5px;
+  }
+  thead th {
+    text-align: left;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: 10px 14px;
+    background: var(--section-bg);
+    border-bottom: 2px solid var(--border);
+  }
+  tbody td {
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+    line-height: 1.45;
+  }
+  tbody tr:hover { background: #faf7f2; }
+  tbody tr:last-child td { border-bottom: none; }
+
+  .td-tool { font-weight: 600; font-size: 13px; }
+  .td-price {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--ink);
+    white-space: nowrap;
+  }
+  .badge {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    padding: 2px 7px;
+    border-radius: 2px;
+    white-space: nowrap;
+  }
+  .badge-red { background: var(--red-pale); color: var(--red); }
+  .badge-green { background: var(--green-pale); color: var(--green); }
+  .badge-amber { background: var(--amber-pale); color: #92400e; }
+  .badge-blue { background: var(--blue-pale); color: var(--blue); }
+  .badge-gray { background: #f5f5f4; color: #57534e; }
+
+  /* ─── FEATURE MATRIX ───────────────────────────────────────── */
+  .matrix { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .matrix th {
+    text-align: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 10px 12px;
+    background: var(--ink);
+    color: #a8a29e;
+    border: 1px solid #2c2826;
+  }
+  .matrix th:first-child { text-align: left; background: var(--ink); }
+  .matrix th.ours { background: var(--amber); color: var(--ink); font-weight: 700; }
+  .matrix td {
+    text-align: center;
+    padding: 11px 12px;
+    border: 1px solid var(--border);
+    font-size: 16px;
+  }
+  .matrix td:first-child {
+    text-align: left;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink);
+    padding-left: 16px;
+  }
+  .matrix td.ours { background: var(--amber-pale); }
+  .matrix tbody tr:hover { background: #faf7f2; }
+  .matrix tbody tr:hover td.ours { background: #fde68a; }
+  .yes { color: #16a34a; }
+  .no { color: #dc2626; }
+  .partial { color: #d97706; }
+
+  /* ─── REVENUE CHART ─────────────────────────────────────────── */
+  .revenue-bars { display: flex; flex-direction: column; gap: 20px; }
+  .rev-row { display: grid; grid-template-columns: 140px 1fr 100px; align-items: center; gap: 16px; }
+  .rev-label { font-size: 13px; font-weight: 500; }
+  .rev-bar-track {
+    background: var(--border);
+    border-radius: 2px;
+    height: 28px;
+    overflow: hidden;
+    position: relative;
+  }
+  .rev-bar-fill {
+    height: 100%;
+    background: var(--amber);
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    padding-left: 12px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    color: #451a03;
+    white-space: nowrap;
+    transition: width 1s ease;
+  }
+  .rev-bar-fill.dark { background: var(--ink); color: #a8a29e; }
+  .rev-arr {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    text-align: right;
+    color: var(--ink);
+  }
+
+  /* ─── ACQUISITION CHANNELS ──────────────────────────────────── */
+  .channels { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .channel {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .channel::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px; height: 100%;
+    background: var(--amber);
+  }
+  .channel-name { font-weight: 600; font-size: 14px; margin-bottom: 4px; }
+  .channel-size {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--amber);
+    margin-bottom: 8px;
+  }
+  .channel-desc { font-size: 12.5px; color: var(--muted); line-height: 1.45; }
+
+  /* ─── TIMELINE ─────────────────────────────────────────────── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 8px; top: 8px; bottom: 8px;
+    width: 2px;
+    background: var(--border);
+  }
+  .tl-item { position: relative; margin-bottom: 28px; }
+  .tl-dot {
+    position: absolute;
+    left: -28px; top: 4px;
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    background: var(--ink);
+    border: 2px solid var(--paper);
+    box-shadow: 0 0 0 2px var(--ink);
+  }
+  .tl-dot.amber { background: var(--amber); box-shadow: 0 0 0 2px var(--amber); }
+  .tl-week {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 4px;
+  }
+  .tl-title { font-weight: 600; font-size: 14px; margin-bottom: 6px; }
+  .tl-steps { list-style: none; }
+  .tl-steps li {
+    font-size: 13px;
+    color: var(--muted);
+    padding: 4px 0;
+    padding-left: 16px;
+    position: relative;
+  }
+  .tl-steps li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--amber);
+    font-size: 11px;
+  }
+
+  /* ─── SIGNAL THRESHOLDS ─────────────────────────────────────── */
+  .signals { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .signal {
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 20px;
+    text-align: center;
+  }
+  .signal-icon { font-size: 28px; margin-bottom: 10px; }
+  .signal-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 28px;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .signal-label { font-size: 12px; color: var(--muted); margin-bottom: 8px; }
+  .signal-verdict { font-size: 12px; font-weight: 600; }
+  .signal-verdict.green { color: var(--green); }
+  .signal-verdict.amber { color: var(--amber); }
+
+  /* ─── OPPORTUNITY SCORE ─────────────────────────────────────── */
+  .score-bar {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background: var(--ink);
+    border-radius: 4px;
+    padding: 28px 32px;
+    margin-bottom: 24px;
+  }
+  .score-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 72px;
+    color: var(--amber-light);
+    line-height: 1;
+    white-space: nowrap;
+  }
+  .score-divider { width: 1px; background: #3a3634; height: 64px; }
+  .score-reasons { list-style: none; }
+  .score-reasons li {
+    font-size: 13px;
+    color: #a8a29e;
+    padding: 3px 0;
+    padding-left: 18px;
+    position: relative;
+  }
+  .score-reasons li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--amber);
+    font-size: 11px;
+    top: 4px;
+  }
+
+  /* ─── MVP SCOPE ─────────────────────────────────────────────── */
+  .mvp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .mvp-col h4 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .mvp-col h4.green { color: var(--green); }
+  .mvp-col h4.red { color: var(--red); }
+  .mvp-items { list-style: none; }
+  .mvp-items li {
+    font-size: 13.5px;
+    padding: 7px 0;
+    padding-left: 20px;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    line-height: 1.4;
+  }
+  .mvp-items li:last-child { border-bottom: none; }
+  .mvp-items li::before {
+    position: absolute;
+    left: 0;
+    font-size: 11px;
+    top: 8px;
+  }
+  .build li::before { content: '◆'; color: var(--green); }
+  .skip li::before { content: '✕'; color: var(--red); }
+  .li-sub { font-size: 11.5px; color: var(--muted); display: block; margin-top: 2px; }
+
+  /* ─── CALLOUT ─────────────────────────────────────────────── */
+  .callout {
+    background: var(--ink);
+    color: #fff;
+    border-radius: 4px;
+    padding: 32px 40px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 32px;
+  }
+  .callout-text {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    line-height: 1.4;
+    color: #fff;
+  }
+  .callout-text em { color: var(--amber-light); font-style: italic; }
+  .callout-pill {
+    background: var(--amber);
+    color: var(--ink);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 12px 20px;
+    border-radius: 2px;
+    white-space: nowrap;
+  }
+
+  /* ─── DIVIDER ─────────────────────────────────────────────── */
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 64px 0;
+  }
+
+  /* ─── DARK SECTION ─────────────────────────────────────────── */
+  .dark-section {
+    background: var(--ink);
+    margin: 0 -48px;
+    padding: 64px 48px;
+    color: var(--paper);
+  }
+  .dark-section .section-header { border-bottom-color: #3a3634; }
+  .dark-section .section-title { color: #fff; }
+  .dark-section .section-num { color: var(--amber); }
+
+  /* ─── FOOTER ─────────────────────────────────────────────── */
+  .report-footer {
+    background: var(--ink);
+    padding: 32px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .report-footer span {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: #44403c;
+    letter-spacing: 0.08em;
+  }
+
+  /* ─── PRINT ─────────────────────────────────────────────── */
+  @media print {
+    body { font-size: 13px; background: white; }
+    .cover { min-height: auto; padding: 48px; break-after: page; }
+    .page { padding: 40px 32px; }
+    .cover-stats { grid-template-columns: repeat(4, 1fr); }
+  }
+
+  /* ─── ANIMATIONS ─────────────────────────────────────────── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .cover-body { animation: fadeUp 0.7s ease forwards; }
+  .cover-stats { animation: fadeUp 0.7s ease 0.2s both; }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- COVER -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<section class="cover">
+  <div>
+    <div class="cover-label">Market Opportunity Report · March 2026</div>
+    <div class="cover-body">
+      <div class="cover-tag">Micro-SaaS Opportunity</div>
+      <h1>Private Lesson<br><em>Studio Manager</em></h1>
+      <p class="cover-sub">A web app for independent music teachers and tutors that finally gets billing right — and stops them from having awkward conversations.</p>
+      <div class="cover-stats">
+        <div class="cover-stat">
+          <div class="cover-stat-num">700<span>k</span></div>
+          <div class="cover-stat-label">Addressable practitioners US</div>
+        </div>
+        <div class="cover-stat">
+          <div class="cover-stat-num">8.5<span>/10</span></div>
+          <div class="cover-stat-label">Opportunity score</div>
+        </div>
+        <div class="cover-stat">
+          <div class="cover-stat-num">$20<span>/mo</span></div>
+          <div class="cover-stat-label">Accepted price point</div>
+        </div>
+        <div class="cover-stat">
+          <div class="cover-stat-num">0</div>
+          <div class="cover-stat-label">Dominant, beloved players</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="cover-footer">
+    <span>CONFIDENTIAL — PRODUCT RESEARCH</span>
+    <span>BASED ON QUALITATIVE + QUANTITATIVE RESEARCH ACROSS 8 NICHES</span>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- MAIN CONTENT -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<main class="page">
+
+  <!-- 01 · MARKET SNAPSHOT -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-num">01</span>
+      <h2 class="section-title">Market Snapshot</h2>
+    </div>
+    <div class="card-grid card-grid-4" style="margin-bottom:16px">
+      <div class="card card-amber">
+        <div class="card-label">Music Teachers (US)</div>
+        <div class="card-value">122k</div>
+        <div class="card-desc">IBISWorld 2024. Industry revenue $802M/year.</div>
+      </div>
+      <div class="card card-amber">
+        <div class="card-label">Tutors incl. self-employed</div>
+        <div class="card-value">580k</div>
+        <div class="card-desc">BLS reports 180k employed; self-employed est. ×3.</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Avg hourly rate</div>
+        <div class="card-value">$60</div>
+        <div class="card-desc">Music $40–120/hr · Tutors $25–150/hr</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Avg annual gross (solo)</div>
+        <div class="card-value">$54k</div>
+        <div class="card-desc">Software at $20/mo = <strong>&lt;0.5%</strong> of gross. Price barely matters.</div>
+      </div>
+    </div>
+    <div class="card-grid card-grid-3">
+      <div class="card card-green">
+        <div class="card-label">Typical student load</div>
+        <div class="card-value">20</div>
+        <div class="card-desc">15–25 students per week per solo teacher.</div>
+      </div>
+      <div class="card card-green">
+        <div class="card-label">US private tutoring market</div>
+        <div class="card-value">$26B</div>
+        <div class="card-desc">2024 figure. Growing at 9% CAGR through 2033.</div>
+      </div>
+      <div class="card card-dark">
+        <div class="card-label">Buyer decision maker</div>
+        <div class="card-value" style="font-size:24px;margin-top:4px">The teacher</div>
+        <div class="card-desc">Solo professional. No committee. No boss. Swipes card themselves — unlike sports coaches who are unpaid volunteers.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 · THE PROBLEM -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-num">02</span>
+      <h2 class="section-title">The Problem — In Their Words</h2>
+    </div>
+    <div class="quotes">
+      <div class="quote">
+        <div class="quote-text">"My books never balance."</div>
+        <div class="quote-source">Verified Capterra Review · My Music Staff</div>
+      </div>
+      <div class="quote">
+        <div class="quote-text">"I have been left out of pocket on many occasions because invoices are generated incorrectly."</div>
+        <div class="quote-source">Verified Capterra Review · My Music Staff</div>
+      </div>
+      <div class="quote">
+        <div class="quote-text">"Billing leads to a minimum of five confused emails from parents each month because of their bizarre policies regarding past-due payments."</div>
+        <div class="quote-source">Verified Capterra Review · My Music Staff</div>
+      </div>
+      <div class="quote">
+        <div class="quote-text">"The auto-invoice feature would have issues all the time. My books are always messy and I cannot trust the amounts."</div>
+        <div class="quote-source">Verified Capterra Review · My Music Staff</div>
+      </div>
+      <div class="quote">
+        <div class="quote-text">"Customer service does not answer phones. It can take two days to get an email reply without any real solution."</div>
+        <div class="quote-source">Verified Capterra Review · Multiple platforms</div>
+      </div>
+      <div class="quote">
+        <div class="quote-text">"I have only kept it because the team hates new things. But next year I'm cancelling and using the free apps that do the exact same thing."</div>
+        <div class="quote-source">Verified Capterra Review · TeamSnap (sports — same profile buyer)</div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px">
+      <div class="callout">
+        <div class="callout-text">These billing bugs have existed for <em>years</em>. My Music Staff launched in 2010. The complaints are identical in 2024 reviews. <em>Nobody has fixed this.</em></div>
+        <div class="callout-pill">The opportunity</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 · COMPETITIVE LANDSCAPE -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-num">03</span>
+      <h2 class="section-title">Competitive Landscape</h2>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Tool</th>
+            <th>Price</th>
+            <th>Target</th>
+            <th>Billing accuracy</th>
+            <th>Google Cal sync</th>
+            <th>Cancellation enforcement</th>
+            <th>Verdict</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="td-tool">My Music Staff</td>
+            <td class="td-price">$14.95/mo</td>
+            <td>Music teachers</td>
+            <td><span class="badge badge-red">Documented broken</span></td>
+            <td><span class="badge badge-amber">One-way only</span></td>
+            <td><span class="badge badge-amber">Limited</span></td>
+            <td style="font-size:12.5px;color:#57534e">Market leader by default. Sticky due to inertia, not love.</td>
+          </tr>
+          <tr>
+            <td class="td-tool">TutorBird</td>
+            <td class="td-price">$14.95/mo</td>
+            <td>Academic tutors</td>
+            <td><span class="badge badge-red">Invoice confusion</span></td>
+            <td><span class="badge badge-red">None</span></td>
+            <td><span class="badge badge-amber">Basic</span></td>
+            <td style="font-size:12.5px;color:#57534e">Same price, same problems, different audience.</td>
+          </tr>
+          <tr>
+            <td class="td-tool">Fons</td>
+            <td class="td-price">$29.95/mo</td>
+            <td>Lesson teachers</td>
+            <td><span class="badge badge-amber">Had double-billing</span></td>
+            <td><span class="badge badge-red">None</span></td>
+            <td><span class="badge badge-green">✓ Auto-enforce</span></td>
+            <td style="font-size:12.5px;color:#57534e">Best cancellation logic. Double-billing incidents. $15 more expensive. Lacks lesson management.</td>
+          </tr>
+          <tr>
+            <td class="td-tool">Duet</td>
+            <td class="td-price">$14/mo</td>
+            <td>Music teachers</td>
+            <td><span class="badge badge-gray">OK</span></td>
+            <td><span class="badge badge-red">None</span></td>
+            <td><span class="badge badge-amber">Basic</span></td>
+            <td style="font-size:12.5px;color:#57534e">Newest entrant. Better UX. Still missing calendar sync and bulletproof billing.</td>
+          </tr>
+          <tr>
+            <td class="td-tool">Teachworks</td>
+            <td class="td-price">~$25+/teacher</td>
+            <td>Multi-teacher studios</td>
+            <td><span class="badge badge-gray">Adequate</span></td>
+            <td><span class="badge badge-red">None</span></td>
+            <td><span class="badge badge-gray">Manual</span></td>
+            <td style="font-size:12.5px;color:#57534e">Built for schools not solos. Per-teacher pricing punishes growth.</td>
+          </tr>
+          <tr>
+            <td class="td-tool">Music Teacher's Helper</td>
+            <td class="td-price">$14–19/mo</td>
+            <td>Music teachers</td>
+            <td><span class="badge badge-gray">Dated</span></td>
+            <td><span class="badge badge-red">None</span></td>
+            <td><span class="badge badge-gray">None</span></td>
+            <td style="font-size:12.5px;color:#57534e">Legacy product. Essentially unmaintained. Still has paying users out of inertia.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 04 · FEATURE GAP MATRIX -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-num">04</span>
+      <h2 class="section-title">Feature Gap Matrix</h2>
+    </div>
+    <div class="table-wrap">
+      <table class="matrix">
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>MMS</th>
+            <th>TutorBird</th>
+            <th>Fons</th>
+            <th>Duet</th>
+            <th class="ours">Your App</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Bulletproof billing (all edge cases)</td>
+            <td><span class="no">✗</span></td>
+            <td><span class="no">✗</span></td>
+            <td><span class="partial">~</span></td>
+            <td><span class="partial">~</span></td>
+            <td class="ours"><span class="yes">✓</span></td>
+          </tr>
+          <tr>
+            <td>Two-way Google Calendar sync</td>
+            <td><span class="no">✗</span></td>
+            <td><span class="no">✗</span></td>
+            <td><span class="no">✗</span></td>
+            <td><span class="no">✗</span></td>
+            <td class="ours"><span class="yes">✓</span></td>
+          </tr>
+          <tr>
+            <td>Auto cancellation policy enforcement</td>
+            <td><span class="partial">~</span></td>
+            <td><span class="partial">~</span></td>
+            <td><span class="yes">✓</span></td>
+            <td><span class="partial">~</span></td>
+            <td class="ours"><span class="yes">✓</span></td>
+          </tr>
+          <tr>
+            <td>Make-up lesson credit tracker</td>
+            <td><span class="no">✗</span></td>
+            <td><span class="no">✗</span></td>
+            <td><span class="partial">~</span></td>
+            <td><span class="partial">~</span></td>
+            <td class="ours"><span class="yes">✓</span></td>
+          </tr>
+          <tr>
+            <td>Card-on-file autopay</td>
+            <td><span class="yes">✓</span></td>
+            <td><span class="yes">✓</span></td>
+            <td><span class="yes">✓</span></td>
+            <td><span class="yes">✓</span></td>
+            <td class="ours"><span class="yes">✓</span></td>
+          </tr>
+          <tr>
+            <td>Parent policy sign at onboarding</td>
+            <td><span class="no">✗</span></td>
+            <td><span class="no">✗</span></td>
+            <td><span class="partial">~</span></td>
+            <td><span class="no">✗</span></td>
+            <td class="ours"><span class="yes">✓</span></td>
+          </tr>
+          <tr>
+            <td>Parent portal (no app download)</td>
+            <td><span class="yes">✓</span></td>
+            <td><span class="yes">✓</span></td>
+            <td><span class="yes">✓</span></td>
+            <td><span class="yes">✓</span></td>
+            <td class="ours"><span class="yes">✓</span></td>
+          </tr>
+          <tr>
+            <td>Recurring lesson with holiday exceptions</td>
+            <td><span class="partial">~</span></td>
+            <td><span class="partial">~</span></td>
+            <td><span class="partial">~</span></td>
+            <td><span class="partial">~</span></td>
+            <td class="ours"><span class="yes">✓</span></td>
+          </tr>
+          <tr>
+            <td>Multi-teacher (schools)</td>
+            <td><span class="partial">~</span></td>
+            <td><span class="no">✗</span></td>
+            <td><span class="partial">~</span></td>
+            <td><span class="no">✗</span></td>
+            <td class="ours" style="font-size:12px;color:#92400e">v2 — not MVP</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:12px;color:var(--muted);margin-top:10px">✓ = implemented well · ~ = partial/buggy · ✗ = absent</p>
+  </section>
+
+  <!-- 05 · MVP SCOPE -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-num">05</span>
+      <h2 class="section-title">MVP Scope — What to Build</h2>
+    </div>
+    <div class="mvp-grid">
+      <div class="mvp-col">
+        <h4 class="green">Build in v1 (4–6 weeks)</h4>
+        <ul class="mvp-items build">
+          <li>Student &amp; family profiles
+            <span class="li-sub">Name, contact, instrument, level, emergency notes</span>
+          </li>
+          <li>Recurring lesson scheduling
+            <span class="li-sub">Weekly / biweekly with per-family exceptions (holidays, summer)</span>
+          </li>
+          <li>True two-way Google Calendar sync
+            <span class="li-sub">Trojan horse — zero migration required, teacher keeps their current calendar</span>
+          </li>
+          <li>Bulletproof billing engine
+            <span class="li-sub">Monthly or per-lesson. Handles cancellations, makeups, prorations, late fees — always accurate</span>
+          </li>
+          <li>Card-on-file autopay
+            <span class="li-sub">Parent enters card once at onboarding. Never manually pays again.</span>
+          </li>
+          <li>Policy onboarding flow
+            <span class="li-sub">Parent signs cancellation policy digitally. System enforces it. Teacher stays silent.</span>
+          </li>
+          <li>Make-up credit tracker
+            <span class="li-sub">Tracks credits owed, expiry dates, auto-notifies parent 1 week before expiry</span>
+          </li>
+          <li>Parent portal (web, no app)
+            <span class="li-sub">View upcoming lessons, past invoices, update card. Just a URL.</span>
+          </li>
+        </ul>
+      </div>
+      <div class="mvp-col">
+        <h4 class="red">Skip in v1 — save for v2</h4>
+        <ul class="mvp-items skip">
+          <li>Progress notes / lesson content tracking
+            <span class="li-sub">Nice to have. Not the core pain.</span>
+          </li>
+          <li>Website hosting
+            <span class="li-sub">My Music Staff does this. Not the reason anyone switches.</span>
+          </li>
+          <li>Multi-teacher / staff management
+            <span class="li-sub">Teachworks territory. Out of solo teacher scope.</span>
+          </li>
+          <li>Marketing / lead capture tools
+            <span class="li-sub">Teachers find students via word-of-mouth. Not a workflow pain.</span>
+          </li>
+          <li>Mobile native app
+            <span class="li-sub">PWA / mobile web is sufficient for v1. Teachers are at a desk.</span>
+          </li>
+          <li>Group lesson / recital management
+            <span class="li-sub">Edge case. Solve the 1:1 lesson workflow first.</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 · REVENUE MODEL -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-num">06</span>
+      <h2 class="section-title">Revenue Projections</h2>
+    </div>
+
+    <div class="card-grid card-grid-3" style="margin-bottom:32px">
+      <div class="card">
+        <div class="card-label">Pricing</div>
+        <div class="card-value">$19.99</div>
+        <div class="card-desc">Per month, flat. Unlimited students.<br>No per-student fees. No transaction cut.<br>Stripe pass-through only (2.9% + 30¢).</div>
+      </div>
+      <div class="card card-amber">
+        <div class="card-label">Positioning vs. competitors</div>
+        <div class="card-value" style="font-size:22px;margin-top:4px">Between MMS &amp; Fons</div>
+        <div class="card-desc">$5 above My Music Staff ($14.95) · $10 below Fons ($29.95). Justifiable because billing actually works.</div>
+      </div>
+      <div class="card">
+        <div class="card-label">30-day free trial</div>
+        <div class="card-value" style="font-size:22px;margin-top:4px">No card required</div>
+        <div class="card-desc">Lower acquisition friction. Teachers set up their studio during trial. Switching cost grows daily.</div>
+      </div>
+    </div>
+
+    <div class="revenue-bars">
+      <div class="rev-row">
+        <div class="rev-label">Conservative<br><span style="font-size:11px;color:var(--muted)">0.5% of 200k TAM · 1,000 users</span></div>
+        <div class="rev-bar-track">
+          <div class="rev-bar-fill" style="width:10%">1,000 customers · $20k MRR</div>
+        </div>
+        <div class="rev-arr">$240k</div>
+      </div>
+      <div class="rev-row">
+        <div class="rev-label">Realistic<br><span style="font-size:11px;color:var(--muted)">1% of 200k TAM · 2,000 users</span></div>
+        <div class="rev-bar-track">
+          <div class="rev-bar-fill" style="width:20%">2,000 customers · $40k MRR</div>
+        </div>
+        <div class="rev-arr">$480k</div>
+      </div>
+      <div class="rev-row">
+        <div class="rev-label">Strong<br><span style="font-size:11px;color:var(--muted)">2.5% of 200k TAM · 5,000 users</span></div>
+        <div class="rev-bar-track">
+          <div class="rev-bar-fill" style="width:50%">5,000 customers · $100k MRR</div>
+        </div>
+        <div class="rev-arr">$1.2M</div>
+      </div>
+      <div class="rev-row">
+        <div class="rev-label">Ambitious<br><span style="font-size:11px;color:var(--muted)">5% of 200k TAM · 10,000 users</span></div>
+        <div class="rev-bar-track">
+          <div class="rev-bar-fill dark" style="width:100%">10,000 customers · $200k MRR</div>
+        </div>
+        <div class="rev-arr">$2.4M</div>
+      </div>
+    </div>
+    <p style="font-size:12px;color:var(--muted);margin-top:14px">TAM of 200k is conservative — music teachers only. Add academic tutors and the addressable market reaches 500k–700k.</p>
+  </section>
+
+  <!-- 07 · CUSTOMER ACQUISITION -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-num">07</span>
+      <h2 class="section-title">Customer Acquisition Channels</h2>
+    </div>
+    <div class="channels">
+      <div class="channel">
+        <div class="channel-name">r/musicteachers</div>
+        <div class="channel-size">57,000 members</div>
+        <div class="channel-desc">Post a genuine pain-point thread first ("what billing software do you use and why does it frustrate you?"). Build cred before pitching.</div>
+      </div>
+      <div class="channel">
+        <div class="channel-name">PianoWorld Teacher Forum</div>
+        <div class="channel-size">30,000+ piano teachers</div>
+        <div class="channel-desc">The dominant community for piano teachers. Most active discussions about studio management software anywhere online.</div>
+      </div>
+      <div class="channel">
+        <div class="channel-name">Music Teacher Facebook Groups</div>
+        <div class="channel-size">Multiple groups, 10k–40k each</div>
+        <div class="channel-desc">Teachers share complaints publicly. "Piano Teachers" and "Independent Music Teachers" groups are the biggest.</div>
+      </div>
+      <div class="channel">
+        <div class="channel-name">"My Music Staff alternative" SEO</div>
+        <div class="channel-size">Zero competition today</div>
+        <div class="channel-desc">Write an honest comparison post. Rank within weeks. This is the highest-intent buyer: someone already frustrated and searching.</div>
+      </div>
+      <div class="channel">
+        <div class="channel-name">YouTube</div>
+        <div class="channel-size">No indie creator covers this</div>
+        <div class="channel-desc">10-min honest comparison video: "My Music Staff vs TutorBird vs [Your App]." Searches exist, zero quality content does.</div>
+      </div>
+      <div class="channel">
+        <div class="channel-name">Direct cold outreach</div>
+        <div class="channel-size">Teachers list emails on websites</div>
+        <div class="channel-desc">"I'm building something to fix music teacher billing — 15 min call?" One-sentence cold email. 5–10% reply rate in niche communities.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 08 · VALIDATION PLAN -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-num">08</span>
+      <h2 class="section-title">2-Week Validation Plan (Zero Code)</h2>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px">
+      <div>
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-week">Week 1 · Days 1–3 — Listen</div>
+            <div class="tl-title">Confirm the pain</div>
+            <ul class="tl-steps">
+              <li>Post in r/musicteachers: <em>"What's your #1 billing headache?"</em> — no pitch</li>
+              <li>Post in PianoWorld Teacher Forum — same question</li>
+              <li>Join 2–3 music teacher Facebook groups and lurk</li>
+              <li>Read every 1-star review of MMS, TutorBird, and Fons on Capterra</li>
+            </ul>
+          </div>
+
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-week">Week 1 · Days 4–7 — Build the list</div>
+            <div class="tl-title">Collect demand signals</div>
+            <ul class="tl-steps">
+              <li>Set up a one-page landing site with email capture only</li>
+              <li>Headline: <em>"Studio billing that parents never question"</em></li>
+              <li>No screenshots needed — just the promise and an email box</li>
+              <li>Post it in communities as a "building in public" update</li>
+            </ul>
+          </div>
+
+          <div class="tl-item">
+            <div class="tl-dot amber"></div>
+            <div class="tl-week">Week 2 · Days 8–14 — Validate intent</div>
+            <div class="tl-title">Turn interest into money signals</div>
+            <ul class="tl-steps">
+              <li>DM 20 teachers who engaged in pain-point threads</li>
+              <li>Offer first 10 signups a lifetime deal at $9.99/mo (lock-in for early adopters)</li>
+              <li>Do 5 discovery calls — ask about their current tool, their worst billing story</li>
+              <li>Optional: sell a $19 "No-Drama Billing Kit" Notion template on Gumroad first</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h4 style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);margin-bottom:20px;padding-bottom:8px;border-bottom:1px solid var(--border)">Signal thresholds — go / no-go</h4>
+        <div class="signals">
+          <div class="signal">
+            <div class="signal-icon">📬</div>
+            <div class="signal-num">50</div>
+            <div class="signal-label">Email signups in week 2</div>
+            <div class="signal-verdict green">Strong signal — keep going</div>
+          </div>
+          <div class="signal">
+            <div class="signal-icon">💳</div>
+            <div class="signal-num">5</div>
+            <div class="signal-label">People who pay $1 to reserve</div>
+            <div class="signal-verdict green">Very strong — start building</div>
+          </div>
+          <div class="signal">
+            <div class="signal-icon">📞</div>
+            <div class="signal-num">5</div>
+            <div class="signal-label">Discovery calls booked</div>
+            <div class="signal-verdict amber">Qualify: do they try to pay you?</div>
+          </div>
+        </div>
+
+        <div style="margin-top:24px;padding:20px;background:var(--section-bg);border-radius:4px">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);margin-bottom:12px">The digital product shortcut</div>
+          <p style="font-size:13.5px;line-height:1.6">Before writing a single line of code, sell a <strong>"No-Drama Music Studio Billing Kit"</strong> on Gumroad for $19: a Google Sheet that correctly calculates monthly billing with cancellations, makeups, and holidays + a copy-paste cancellation policy template + parent onboarding email sequence.</p>
+          <p style="font-size:13.5px;line-height:1.6;margin-top:10px">If 30 teachers buy it = <strong>$570 revenue + proof of concept + 30 beta users</strong> for the full app.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 09 · OPPORTUNITY SCORE -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-num">09</span>
+      <h2 class="section-title">Why This Scored 8.5 / 10</h2>
+    </div>
+
+    <div class="score-bar">
+      <div class="score-num">8.5<span style="font-size:32px;color:#78716c">/10</span></div>
+      <div class="score-divider"></div>
+      <ul class="score-reasons">
+        <li>500k–700k solo practitioners in the US — far larger than official numbers show</li>
+        <li>Paid professionals who own their own $20/month decision. No committee. No boss.</li>
+        <li>Incumbents (MMS, TutorBird) have identical, documented, unfixed billing bugs from 2010 to today</li>
+        <li>No dominant, well-funded, beloved player. Fragmented mediocre SaaS — not TeamSnap with VC money.</li>
+        <li>Customer acquisition is free: concentrated communities (PianoWorld, teacher Facebook groups)</li>
+        <li>Google Calendar sync is a Trojan horse — zero migration friction for new users</li>
+        <li>Low churn expected: teachers who set up their studio stay for years. Students are long-term.</li>
+      </ul>
+    </div>
+
+    <div class="card-grid card-grid-3">
+      <div class="card card-red">
+        <div class="card-label">Main risk</div>
+        <div class="card-value" style="font-size:20px;margin-top:4px">Volume required</div>
+        <div class="card-desc">At $20/mo, reaching $1M ARR needs 4,200 customers. Low price = volume game. Needs consistent community-driven acquisition.</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Mitigation</div>
+        <div class="card-value" style="font-size:20px;margin-top:4px">Add tutors too</div>
+        <div class="card-desc">Academic tutors (SAT prep, language, math) have identical billing problems. Same product, 3× larger market.</div>
+      </div>
+      <div class="card card-green">
+        <div class="card-label">Expansion path</div>
+        <div class="card-value" style="font-size:20px;margin-top:4px">Studio plan at $49</div>
+        <div class="card-desc">When a teacher grows to 3+ staff, offer a multi-teacher tier. Natural upsell path without rebuilding the product.</div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ─── FOOTER ─────────────────────────────────────────────── -->
+<footer class="report-footer">
+  <span>MUSIC TEACHER STUDIO MANAGER · MARKET OPPORTUNITY REPORT · MARCH 2026</span>
+  <span>RESEARCH: CAPTERRA · IBISWORLD · BLS · PIANOWORLD · REDDIT · G2 · SOFTWARE ADVICE</span>
+</footer>
+
+<script>
+  // Animate revenue bars on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.width = entry.target.dataset.width;
+      }
+    });
+  }, { threshold: 0.2 });
+
+  document.querySelectorAll('.rev-bar-fill').forEach(bar => {
+    bar.dataset.width = bar.style.width;
+    bar.style.width = '0';
+    observer.observe(bar);
+  });
+</script>
+
+</body>
+</html>
