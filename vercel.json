@@ -1,9 +1,7 @@
 {
   "version": 2,
-  "builds": [
-    { "src": "b1-trainer.html", "use": "@vercel/static" }
-  ],
   "routes": [
+    { "src": "/api/(.*)", "dest": "/api/$1" },
     { "src": "/", "dest": "/b1-trainer.html" },
     { "src": "/(.*)", "dest": "/b1-trainer.html" }
   ]

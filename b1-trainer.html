@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>B1 Deutsch Trainer 🎓</title>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -604,25 +603,21 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 </header>
 <!-- AUTH OVERLAY -->
 <div id="auth-overlay" style="display:none;position:fixed;inset:0;z-index:1000;background:linear-gradient(135deg,#4F46E5 0%,#7C3AED 50%,#EC4899 100%);overflow-y:auto;padding:24px 16px">
-  <div style="max-width:420px;margin:0 auto;min-height:100vh;display:flex;flex-direction:column;justify-content:center;gap:16px">
-
-    <!-- Logo -->
+  <div style="max-width:400px;margin:0 auto;min-height:100vh;display:flex;flex-direction:column;justify-content:center;gap:16px">
     <div style="text-align:center;padding:16px 0 8px">
       <div style="font-size:52px;margin-bottom:10px">🎓</div>
       <div style="font-size:26px;font-weight:900;color:#fff;letter-spacing:-.02em">B1 Trainer</div>
       <div style="font-size:13px;color:rgba(255,255,255,.65);margin-top:4px">Deutsch Prüfungsvorbereitung</div>
     </div>
 
-    <!-- Tabs -->
-    <div style="display:flex;background:rgba(255,255,255,.1);border-radius:12px;padding:4px;gap:4px" id="auth-tabs">
-      <button id="tab-login" onclick="showAuthOverlay('login')" style="flex:1;padding:9px;border-radius:9px;border:none;font-size:14px;font-weight:700;cursor:pointer;transition:all .2s;background:#fff;color:#4F46E5">Login</button>
-      <button id="tab-signup" onclick="showAuthOverlay('signup')" style="flex:1;padding:9px;border-radius:9px;border:none;font-size:14px;font-weight:700;cursor:pointer;transition:all .2s;background:transparent;color:rgba(255,255,255,.7)">Sign Up</button>
+    <div id="auth-mode-tabs" style="display:flex;background:rgba(255,255,255,.1);border-radius:12px;padding:4px;gap:4px">
+      <button onclick="showAuthOverlay('login')" id="tab-login" style="flex:1;padding:9px;border-radius:9px;border:none;font-size:14px;font-weight:700;cursor:pointer;background:#fff;color:#4F46E5">Login</button>
+      <button onclick="showAuthOverlay('signup')" id="tab-signup" style="flex:1;padding:9px;border-radius:9px;border:none;font-size:14px;font-weight:700;cursor:pointer;background:transparent;color:rgba(255,255,255,.7)">Sign Up</button>
     </div>
 
-    <!-- Card -->
     <div style="background:rgba(255,255,255,.1);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.2);border-radius:20px;padding:28px">
 
-      <!-- Login Form -->
+      <!-- Login -->
       <div id="auth-login-form">
         <h2 style="color:#fff;font-size:19px;font-weight:800;margin-bottom:20px" id="auth-login-greeting">Welcome back! 👋</h2>
         <div style="margin-bottom:14px">
@@ -633,54 +628,39 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
           <label style="display:block;color:rgba(255,255,255,.75);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:7px">Password</label>
           <input id="login-pass" type="password" placeholder="Your password" autocomplete="current-password" style="width:100%;padding:12px 14px;border-radius:10px;border:1.5px solid rgba(255,255,255,.25);background:rgba(255,255,255,.12);color:#fff;font-size:14px;outline:none" onfocus="this.style.borderColor='rgba(255,255,255,.7)'" onblur="this.style.borderColor='rgba(255,255,255,.25)'" onkeydown="if(event.key==='Enter')doLogin()">
         </div>
-        <div style="text-align:right;margin-bottom:18px">
-          <button onclick="doForgotPassword()" style="background:none;border:none;color:rgba(255,255,255,.55);font-size:12px;cursor:pointer">Forgot password?</button>
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px">
+          <label style="display:flex;align-items:center;gap:6px;color:rgba(255,255,255,.65);font-size:12px;cursor:pointer"><input type="checkbox" id="login-remember" checked style="width:14px;height:14px"> Remember me (30 days)</label>
         </div>
-        <div id="login-err" style="display:none;color:#FCA5A5;font-size:13px;margin-bottom:12px;padding:8px 12px;background:rgba(220,38,38,.2);border-radius:8px"></div>
-        <button id="login-btn" onclick="doLogin()" style="width:100%;padding:13px;border-radius:10px;border:none;background:#fff;color:#4F46E5;font-size:15px;font-weight:800;cursor:pointer;box-shadow:0 4px 16px rgba(0,0,0,.2);transition:opacity .15s">
-          Login →
-        </button>
-        <div style="text-align:center;margin-top:16px">
-          <span style="color:rgba(255,255,255,.55);font-size:13px">No account? </span>
-          <button onclick="showAuthOverlay('signup')" style="background:none;border:none;color:#fff;font-size:13px;font-weight:700;cursor:pointer;text-decoration:underline">Sign up free</button>
-        </div>
+        <div id="login-err" style="display:none;font-size:13px;margin-bottom:12px;padding:8px 12px;border-radius:8px"></div>
+        <button id="login-btn" onclick="doLogin()" style="width:100%;padding:13px;border-radius:10px;border:none;background:#fff;color:#4F46E5;font-size:15px;font-weight:800;cursor:pointer;box-shadow:0 4px 16px rgba(0,0,0,.2)">Login →</button>
+        <p style="text-align:center;margin-top:14px;font-size:13px;color:rgba(255,255,255,.55)">No account? <button onclick="showAuthOverlay('signup')" style="background:none;border:none;color:#fff;font-weight:700;cursor:pointer;font-size:13px;text-decoration:underline">Sign up free</button></p>
       </div>
 
-      <!-- Signup Form -->
+      <!-- Signup -->
       <div id="auth-signup-form" style="display:none">
         <h2 style="color:#fff;font-size:19px;font-weight:800;margin-bottom:20px">Create account ✨</h2>
         <div style="margin-bottom:14px">
           <label style="display:block;color:rgba(255,255,255,.75);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:7px">Your Name</label>
-          <input id="signup-name" type="text" placeholder="e.g. Ruslan" autocomplete="name" style="width:100%;padding:12px 14px;border-radius:10px;border:1.5px solid rgba(255,255,255,.25);background:rgba(255,255,255,.12);color:#fff;font-size:14px;outline:none" onfocus="this.style.borderColor='rgba(255,255,255,.7)'" onblur="this.style.borderColor='rgba(255,255,255,.25)'" onkeydown="if(event.key==='Enter')document.getElementById('signup-email').focus()">
+          <input id="signup-name" type="text" placeholder="e.g. Ruslan" autocomplete="name" style="width:100%;padding:12px 14px;border-radius:10px;border:1.5px solid rgba(255,255,255,.25);background:rgba(255,255,255,.12);color:#fff;font-size:14px;outline:none" onfocus="this.style.borderColor='rgba(255,255,255,.7)'" onblur="this.style.borderColor='rgba(255,255,255,.25)'">
         </div>
         <div style="margin-bottom:14px">
           <label style="display:block;color:rgba(255,255,255,.75);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:7px">Email</label>
-          <input id="signup-email" type="email" placeholder="your@email.com" autocomplete="email" style="width:100%;padding:12px 14px;border-radius:10px;border:1.5px solid rgba(255,255,255,.25);background:rgba(255,255,255,.12);color:#fff;font-size:14px;outline:none" onfocus="this.style.borderColor='rgba(255,255,255,.7)'" onblur="this.style.borderColor='rgba(255,255,255,.25)'" onkeydown="if(event.key==='Enter')document.getElementById('signup-pass').focus()">
+          <input id="signup-email" type="email" placeholder="your@email.com" autocomplete="email" style="width:100%;padding:12px 14px;border-radius:10px;border:1.5px solid rgba(255,255,255,.25);background:rgba(255,255,255,.12);color:#fff;font-size:14px;outline:none" onfocus="this.style.borderColor='rgba(255,255,255,.7)'" onblur="this.style.borderColor='rgba(255,255,255,.25)'">
         </div>
-        <div style="margin-bottom:14px">
+        <div style="margin-bottom:20px">
           <label style="display:block;color:rgba(255,255,255,.75);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:7px">Password</label>
           <input id="signup-pass" type="password" placeholder="At least 6 characters" autocomplete="new-password" style="width:100%;padding:12px 14px;border-radius:10px;border:1.5px solid rgba(255,255,255,.25);background:rgba(255,255,255,.12);color:#fff;font-size:14px;outline:none" onfocus="this.style.borderColor='rgba(255,255,255,.7)'" onblur="this.style.borderColor='rgba(255,255,255,.25)'" onkeydown="if(event.key==='Enter')doSignup()">
         </div>
-        <div id="signup-err" style="display:none;color:#FCA5A5;font-size:13px;margin-bottom:12px;padding:8px 12px;background:rgba(220,38,38,.2);border-radius:8px"></div>
-        <div id="signup-ok" style="display:none;color:#6EE7B7;font-size:13px;margin-bottom:12px;padding:8px 12px;background:rgba(5,150,105,.2);border-radius:8px"></div>
-        <button id="signup-btn" onclick="doSignup()" style="width:100%;padding:13px;border-radius:10px;border:none;background:#fff;color:#4F46E5;font-size:15px;font-weight:800;cursor:pointer;box-shadow:0 4px 16px rgba(0,0,0,.2);transition:opacity .15s">
-          Create Account →
-        </button>
-        <div style="text-align:center;margin-top:16px">
-          <span style="color:rgba(255,255,255,.55);font-size:13px">Already have an account? </span>
-          <button onclick="showAuthOverlay('login')" style="background:none;border:none;color:#fff;font-size:13px;font-weight:700;cursor:pointer;text-decoration:underline">Login</button>
-        </div>
+        <div id="signup-msg" style="display:none;font-size:13px;margin-bottom:12px;padding:8px 12px;border-radius:8px"></div>
+        <button id="signup-btn" onclick="doSignup()" style="width:100%;padding:13px;border-radius:10px;border:none;background:#fff;color:#4F46E5;font-size:15px;font-weight:800;cursor:pointer;box-shadow:0 4px 16px rgba(0,0,0,.2)">Create Account →</button>
+        <p style="text-align:center;margin-top:14px;font-size:13px;color:rgba(255,255,255,.55)">Have an account? <button onclick="showAuthOverlay('login')" style="background:none;border:none;color:#fff;font-weight:700;cursor:pointer;font-size:13px;text-decoration:underline">Login</button></p>
       </div>
 
     </div>
 
-    <!-- Config warning (shown if Supabase not configured) -->
-    <div id="auth-config-card" style="display:none;background:rgba(220,38,38,.15);border:1px solid rgba(220,38,38,.4);border-radius:16px;padding:20px;text-align:center">
-      <div style="font-size:28px;margin-bottom:8px">⚙️</div>
-      <div style="color:#FCA5A5;font-size:14px;font-weight:700;margin-bottom:8px">Supabase Not Configured</div>
-      <div style="color:rgba(255,255,255,.6);font-size:12px;line-height:1.6">Set SUPABASE_URL and SUPABASE_ANON_KEY in the HTML file or Vercel environment variables to enable multi-user auth.</div>
+    <div id="auth-no-db" style="display:none;background:rgba(0,0,0,.2);border:1px solid rgba(255,200,0,.3);border-radius:12px;padding:14px;font-size:12px;color:rgba(255,255,255,.7);text-align:center;line-height:1.6">
+      ⚙️ Database not configured — running in local mode.<br>Set DB_URL and DB_TOKEN in the HTML to enable multi-user sync.
     </div>
-
   </div>
 </div>
 <div class="app">
@@ -766,7 +746,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
   </div>
   <div class="settings-section">
     <h3>Account</h3>
-    <div class="setting-row"><span class="setting-label">Logged in as <strong id="settings-username"></strong></span><button class="btn-danger" onclick="supabase.auth.signOut()">🔒 Logout</button></div>
+    <div class="setting-row"><span class="setting-label">Logged in as <strong id="settings-username"></strong></span><button class="btn-danger" onclick="AUTH.logout()">🔒 Logout</button></div>
   </div>
   <button class="btn-primary" style="margin-top:8px" onclick="saveSettings()">Сохранить</button>
 </section>
@@ -778,109 +758,136 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
   <button class="nav-tab" id="nav-settings" onclick="showScreen('settings');renderSettings()"><div class="nav-icon">⚙️</div><span id="nav-lbl-settings">Settings</span></button>
 </nav>
 <script>
-// ── Supabase Config ─────────────────────────────────────
-// REPLACE these with your actual Supabase project values
-const SUPABASE_URL = 'YOUR_SUPABASE_URL';
-const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY';
+// ── Auth (API-backed) ───────────────────────────────────
+const AUTH = {
+  _sessionKey: 'b1_session_token',
+  _userKey: 'b1_user_cache',
 
-const supabase = (typeof window !== 'undefined' && window.supabase && SUPABASE_URL !== 'YOUR_SUPABASE_URL')
-  ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
-  : null;
+  getSessionToken() { return localStorage.getItem(this._sessionKey); },
+  setSessionToken(token) { localStorage.setItem(this._sessionKey, token); },
+  clearSession() {
+    localStorage.removeItem(this._sessionKey);
+    localStorage.removeItem(this._userKey);
+  },
 
-// ── Auth helpers ─────────────────────────────────────────
-let currentUser = null;
+  async _api(path, options = {}) {
+    const token = this.getSessionToken();
+    const res = await fetch(path, {
+      headers: {
+        'Content-Type': 'application/json',
+        ...(token ? { 'Authorization': `Bearer ${token}` } : {})
+      },
+      ...options
+    });
+    return res.json();
+  },
 
-async function initAuth() {
-  if (!supabase) { showConfigScreen(); return; }
+  async isLoggedIn() {
+    const token = this.getSessionToken();
+    if (!token) return false;
+    try {
+      const data = await this._api('/api/me');
+      if (data.user) {
+        this._cachedUser = data.user;
+        this._cachedProgress = data.progress;
+        return true;
+      }
+    } catch(e) {}
+    this.clearSession();
+    return false;
+  },
 
-  const { data: { session } } = await supabase.auth.getSession();
-  if (session) {
-    currentUser = session.user;
-    await loadUserProgress();
-    hideAuthOverlay();
-    renderHome();
-    showScreen('home');
-  } else {
-    showAuthOverlay('login');
-  }
+  async getCurrentUser() {
+    return this._cachedUser || null;
+  },
 
-  // Listen for auth changes
-  supabase.auth.onAuthStateChange(async (event, session) => {
-    if (event === 'SIGNED_IN' && session) {
-      currentUser = session.user;
-      await loadUserProgress();
-      hideAuthOverlay();
-      renderHome();
-      showScreen('home');
-    } else if (event === 'SIGNED_OUT') {
-      currentUser = null;
-      showAuthOverlay('login');
+  async signup(name, email, password) {
+    try {
+      const data = await this._api('/api/signup', {
+        method: 'POST',
+        body: JSON.stringify({ name, email, password })
+      });
+      if (data.error) return { error: data.error };
+      this.setSessionToken(data.token);
+      this._cachedUser = data.user;
+      return { user: data.user };
+    } catch(e) {
+      return { error: 'Network error. Please try again.' };
     }
-  });
-}
+  },
 
-async function loadUserProgress() {
-  if (!currentUser || !supabase) return;
-  const { data } = await supabase
-    .from('progress')
-    .select('*')
-    .eq('user_id', currentUser.id)
-    .single();
+  async login(email, password) {
+    try {
+      const data = await this._api('/api/login', {
+        method: 'POST',
+        body: JSON.stringify({ email, password })
+      });
+      if (data.error) return { error: data.error };
+      this.setSessionToken(data.token);
+      this._cachedUser = data.user;
+      return { user: data.user };
+    } catch(e) {
+      return { error: 'Network error. Please try again.' };
+    }
+  },
 
-  if (data) {
-    S.xp = data.xp || 0;
-    S.streak = data.streak || 0;
-    S.lastPracticeDate = data.last_practice_date;
-    S.todayExercises = data.today_exercises || 0;
-    S.todayDate = data.today_date;
-    S.scores = data.scores || {};
-    S.examHistory = data.exam_history || [];
-    S.vocab = data.vocab || [];
-    S.achievements = data.achievements || {};
-    S.tipsShown = data.tips_shown || {};
-    S.confidence = data.confidence || {};
-    if (data.settings) S.settings = { ...S.settings, ...data.settings };
+  async logout() {
+    try { await this._api('/api/logout', { method: 'POST' }); } catch(e) {}
+    this.clearSession();
+    showAuthOverlay('login');
+  },
+
+  async loadProgress() {
+    if (!this._cachedProgress) return;
+    const p = this._cachedProgress;
+    try {
+      S.xp = parseInt(p.xp) || 0;
+      S.streak = parseInt(p.streak) || 0;
+      S.lastPracticeDate = p.lastDay || null;
+      S.todayExercises = 0;
+      S.todayDate = null;
+      S.scores = typeof p.scores === 'object' ? p.scores : JSON.parse(p.scores || '{}');
+      S.examHistory = Array.isArray(p.examHistory) ? p.examHistory : JSON.parse(p.examHistory || '[]');
+      S.vocab = Array.isArray(p.vocab) ? p.vocab : JSON.parse(p.vocab || '[]');
+      S.achievements = typeof p.achievements === 'object' ? p.achievements : JSON.parse(p.achievements || '{}');
+      const user = this._cachedUser;
+      if (user) S.settings.name = user.name;
+    } catch(e) {}
+    const today = new Date().toDateString();
+    if (S.todayDate !== today) { S.todayExercises = 0; S.todayDate = today; }
+  },
+
+  async saveProgress() {
+    const token = this.getSessionToken();
+    if (!token) return;
+    try {
+      await this._api('/api/progress', {
+        method: 'POST',
+        body: JSON.stringify({
+          xp: S.xp,
+          streak: S.streak,
+          lastDay: S.lastPracticeDate,
+          scores: S.scores,
+          examHistory: S.examHistory,
+          vocab: S.vocab,
+          achievements: S.achievements
+        })
+      });
+    } catch(e) {}
+  },
+
+  getName() {
+    return this._cachedUser?.name || S.settings.name || 'User';
   }
+};
 
-  // Get name from profile
-  const { data: profile } = await supabase
-    .from('profiles')
-    .select('name')
-    .eq('id', currentUser.id)
-    .single();
-  if (profile?.name) S.settings.name = profile.name;
-
-  const today = new Date().toDateString();
-  if (S.todayDate !== today) { S.todayExercises = 0; S.todayDate = today; }
-  saveState();
-}
-
-async function saveStateRemote() {
-  if (!currentUser || !supabase) return;
-  await supabase.from('progress').upsert({
-    user_id: currentUser.id,
-    xp: S.xp,
-    streak: S.streak,
-    last_practice_date: S.lastPracticeDate,
-    today_exercises: S.todayExercises,
-    today_date: S.todayDate,
-    scores: S.scores,
-    exam_history: S.examHistory,
-    vocab: S.vocab,
-    achievements: S.achievements,
-    tips_shown: S.tipsShown,
-    confidence: S.confidence,
-    settings: S.settings,
-    updated_at: new Date().toISOString()
-  }, { onConflict: 'user_id' });
-}
-
-// Override saveState to also sync remotely
-const _origSaveState = saveState;
+// saveState: persist locally and fire remote sync
 function saveState() {
-  _origSaveState();
-  saveStateRemote(); // fire-and-forget
+  _saveStateLocal();
+  AUTH.saveProgress(); // fire-and-forget
 }
+
+function resetInactivityTimer() { /* no-op: session managed server-side */ }
 
 // Translation cache (session + localStorage)
 const TRANS_CACHE = (() => {
@@ -2516,7 +2523,7 @@ function loadState() {
   if (S.todayDate !== today) { S.todayExercises = 0; S.todayDate = today; }
   applyTheme();
 }
-function saveState() { localStorage.setItem('b1trainer_v2', JSON.stringify(S)); }
+function _saveStateLocal() { localStorage.setItem('b1trainer_v2', JSON.stringify(S)); }
 function applyTheme() { document.documentElement.setAttribute('data-theme', S.settings.dark ? 'dark' : 'light'); }
 
 // ── XP & Gamification ───────────────────────────────────
@@ -3377,7 +3384,7 @@ function renderSettings() {
   const langEl = document.getElementById('set-lang');
   if (langEl) langEl.value = S.settings.lang || 'en';
   const unEl = document.getElementById('settings-username');
-  if (unEl) unEl.textContent = (currentUser?.user_metadata?.name || S.settings.name || 'User');
+  if (unEl) unEl.textContent = (AUTH.getName());
 }
 function saveSettings() {
   S.settings.name = document.getElementById('set-name').value || 'Руслан';
@@ -3400,23 +3407,24 @@ function exportData() {
   a.download = 'b1trainer_backup.json'; a.click();
 }
 function showAuthOverlay(mode) {
+  mode = mode || 'login';
   document.getElementById('auth-overlay').style.display = 'block';
   document.querySelector('.app').style.display = 'none';
   document.querySelector('.bottom-nav').style.display = 'none';
   document.querySelector('.app-header').style.display = 'none';
-  document.getElementById('auth-config-card').style.display = 'none';
-
   const isLogin = mode !== 'signup';
   document.getElementById('auth-login-form').style.display = isLogin ? 'block' : 'none';
   document.getElementById('auth-signup-form').style.display = isLogin ? 'none' : 'block';
-  document.getElementById('tab-login').style.cssText += isLogin
-    ? ';background:#fff;color:#4F46E5' : ';background:transparent;color:rgba(255,255,255,.7)';
-  document.getElementById('tab-signup').style.cssText += isLogin
-    ? ';background:transparent;color:rgba(255,255,255,.7)' : ';background:#fff;color:#4F46E5';
-
+  document.getElementById('tab-login').style.cssText = isLogin
+    ? 'flex:1;padding:9px;border-radius:9px;border:none;font-size:14px;font-weight:700;cursor:pointer;background:#fff;color:#4F46E5'
+    : 'flex:1;padding:9px;border-radius:9px;border:none;font-size:14px;font-weight:700;cursor:pointer;background:transparent;color:rgba(255,255,255,.7)';
+  document.getElementById('tab-signup').style.cssText = isLogin
+    ? 'flex:1;padding:9px;border-radius:9px;border:none;font-size:14px;font-weight:700;cursor:pointer;background:transparent;color:rgba(255,255,255,.7)'
+    : 'flex:1;padding:9px;border-radius:9px;border:none;font-size:14px;font-weight:700;cursor:pointer;background:#fff;color:#4F46E5';
+  document.getElementById('auth-no-db').style.display = DB_CONFIGURED ? 'none' : 'block';
   setTimeout(() => {
-    if (isLogin) document.getElementById('login-email').focus();
-    else document.getElementById('signup-name').focus();
+    const el = document.getElementById(isLogin ? 'login-email' : 'signup-name');
+    if (el) el.focus();
   }, 100);
 }
 
@@ -3427,30 +3435,22 @@ function hideAuthOverlay() {
   document.querySelector('.app-header').style.display = '';
 }
 
-function showConfigScreen() {
-  document.getElementById('auth-overlay').style.display = 'block';
-  document.querySelector('.app').style.display = 'none';
-  document.querySelector('.bottom-nav').style.display = 'none';
-  document.querySelector('.app-header').style.display = 'none';
-  document.getElementById('auth-login-form').style.display = 'none';
-  document.getElementById('auth-signup-form').style.display = 'none';
-  document.getElementById('auth-tabs').style.display = 'none';
-  document.getElementById('auth-config-card').style.display = 'block';
-}
-
 async function doLogin() {
   const email = document.getElementById('login-email').value.trim();
   const pass = document.getElementById('login-pass').value;
+  const remember = document.getElementById('login-remember').checked;
   const btn = document.getElementById('login-btn');
-  document.getElementById('login-err').style.display = 'none';
-
-  if (!email || !pass) { showFormError('login-err', 'Please enter email and password.'); return; }
-
+  clearMsg('login-err');
+  if (!email || !pass) { showMsg('login-err', 'Please enter email and password.', 'error'); return; }
   btn.textContent = 'Logging in...'; btn.disabled = true;
-  const { error } = await supabase.auth.signInWithPassword({ email, password: pass });
+  const result = await AUTH.login(email, pass, remember);
   btn.textContent = 'Login →'; btn.disabled = false;
-
-  if (error) showFormError('login-err', error.message);
+  if (result.error) { showMsg('login-err', result.error, 'error'); return; }
+  S.settings.name = result.user.name;
+  await AUTH.loadProgress();
+  saveState();
+  hideAuthOverlay();
+  renderHome(); showScreen('home');
 }
 
 async function doSignup() {
@@ -3458,46 +3458,39 @@ async function doSignup() {
   const email = document.getElementById('signup-email').value.trim();
   const pass = document.getElementById('signup-pass').value;
   const btn = document.getElementById('signup-btn');
-  document.getElementById('signup-err').style.display = 'none';
-  document.getElementById('signup-ok').style.display = 'none';
-
-  if (!name) { showFormError('signup-err', 'Please enter your name.'); return; }
-  if (!email) { showFormError('signup-err', 'Please enter your email.'); return; }
-  if (pass.length < 6) { showFormError('signup-err', 'Password must be at least 6 characters.'); return; }
-
-  btn.textContent = 'Creating account...'; btn.disabled = true;
-  const { error } = await supabase.auth.signUp({
-    email, password: pass,
-    options: { data: { name } }
-  });
+  clearMsg('signup-msg');
+  if (!name) { showMsg('signup-msg', 'Please enter your name.', 'error'); return; }
+  if (!email || !email.includes('@')) { showMsg('signup-msg', 'Please enter a valid email.', 'error'); return; }
+  if (pass.length < 6) { showMsg('signup-msg', 'Password must be at least 6 characters.', 'error'); return; }
+  btn.textContent = 'Creating...'; btn.disabled = true;
+  const result = await AUTH.signup(name, email, pass);
   btn.textContent = 'Create Account →'; btn.disabled = false;
-
-  if (error) {
-    showFormError('signup-err', error.message);
-  } else {
-    const okEl = document.getElementById('signup-ok');
-    okEl.textContent = '✅ Account created! Check your email to confirm, then log in.';
-    okEl.style.display = 'block';
-    document.getElementById('signup-name').value = '';
-    document.getElementById('signup-email').value = '';
-    document.getElementById('signup-pass').value = '';
-  }
+  if (result.error) { showMsg('signup-msg', result.error, 'error'); return; }
+  showMsg('signup-msg', '✅ Account created! Logging you in...', 'success');
+  setTimeout(() => {
+    document.getElementById('login-email').value = email;
+    document.getElementById('login-pass').value = pass;
+    showAuthOverlay('login');
+    doLogin();
+  }, 1000);
 }
 
-async function doForgotPassword() {
-  const email = document.getElementById('login-email').value.trim();
-  if (!email) { showFormError('login-err', 'Enter your email first, then click Forgot Password.'); return; }
-  const { error } = await supabase.auth.resetPasswordForEmail(email);
-  if (error) showFormError('login-err', error.message);
-  else showFormError('login-err', '✅ Reset email sent! Check your inbox.');
-}
-
-function showFormError(id, msg) {
+function showMsg(id, msg, type) {
   const el = document.getElementById(id);
+  if (!el) return;
   el.textContent = msg;
   el.style.display = 'block';
-  el.style.color = msg.startsWith('✅') ? '#6EE7B7' : '#FCA5A5';
-  el.style.background = msg.startsWith('✅') ? 'rgba(5,150,105,.2)' : 'rgba(220,38,38,.2)';
+  el.style.color = type === 'success' ? '#6EE7B7' : '#FCA5A5';
+  el.style.background = type === 'success' ? 'rgba(5,150,105,.2)' : 'rgba(220,38,38,.2)';
+}
+function clearMsg(id) {
+  const el = document.getElementById(id);
+  if (el) el.style.display = 'none';
+}
+function doReset() {
+  if (confirm('This will delete all progress and account data. Are you sure?')) {
+    localStorage.clear(); location.reload();
+  }
 }
 
 function toggleDark() {
@@ -3536,7 +3529,18 @@ function launchConfetti(container) {
 loadState();
 document.getElementById('dark-btn').textContent = S.settings.dark ? '☀️' : '🌙';
 updateLangUI();
-initAuth();
+
+(async () => {
+  const loggedIn = await AUTH.isLoggedIn();
+  if (loggedIn) {
+    await AUTH.loadProgress();
+    hideAuthOverlay();
+    renderHome();
+    showScreen('home');
+  } else {
+    showAuthOverlay('login');
+  }
+})();
 document.addEventListener('click', e => {
   if (!e.target.closest('.word-tooltip') && !e.target.closest('.de-word')) {
     document.querySelectorAll('.word-tooltip').forEach(t => t.remove());
